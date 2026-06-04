@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: 'DM Serif Display';
+    --font-sans: 'Inter';
+  }
+
+  html {
+    @apply text-[#1a1a2e] antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  body {
+    @apply font-sans text-base leading-relaxed;
+  }
+}
+
+@layer components {
+  /* Reusable section wrapper */
+  .section {
+    @apply py-section px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-sm {
+    @apply py-section-sm px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Max-width content container */
+  .container-content {
+    @apply max-w-content mx-auto;
+  }
+
+  /* Prose reading container */
+  .container-prose {
+    @apply max-w-prose mx-auto;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center
+           bg-navy-900 text-white font-sans font-medium
+           px-6 py-3 rounded
+           hover:bg-navy-700 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-navy-900 focus:ring-offset-2;
+  }
+
+  /* Ghost / outline button */
+  .btn-outline {
+    @apply inline-flex items-center justify-center
+           border border-navy-900 text-navy-900 font-sans font-medium
+           px-6 py-3 rounded
+           hover:bg-navy-50 transition-colors duration-200;
+  }
+
+  /* CTA banner — full width, high contrast */
+  .cta-banner {
+    @apply bg-navy-900 text-white py-section-sm px-4 sm:px-6 lg:px-8 text-center;
+  }
+}
