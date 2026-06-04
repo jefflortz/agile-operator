@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { DM_Serif_Display, Inter } from 'next/font/google'
+import Nav from '@/components/layout/Nav'
+import Footer from '@/components/layout/Footer'
 import './globals.css'
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
     default: 'Agile Operator | Strategic Growth Advisory',
   },
   description:
-    'Strategic growth solutions for ambitious operators. Agile Operator provides proven playbooks and frameworks to balance margins and mandates.',
+    'Strategic growth advisory for ambitious operators. Agile Operator provides proven playbooks and frameworks to balance margins and mandates.',
   metadataBase: new URL('https://agile-operator.com'),
   openGraph: {
     siteName: 'Agile Operator',
@@ -36,7 +38,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${dmSerifDisplay.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   )
 }
