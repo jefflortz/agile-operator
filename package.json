@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@portabletext/react": "^3.0.0",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.0",
     "@sanity/client": "^6.0.0",
     "@sanity/vision": "^3.0.0",
     "@sanity/image-url": "^1.0.0",

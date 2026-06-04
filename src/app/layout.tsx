@@ -37,11 +37,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${dmSerifDisplay.variable} ${inter.variable}`}>
-      <body className="min-h-screen flex flex-col">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html lang="en" className={`${dmSerifDisplay.variable} ${inter.variable} h-full`}>
+      <body className="min-h-full bg-navy-950">
+        <Nav>
+          <main className="w-full flex-auto">{children}</main>
+          <Footer />
+        </Nav>
       </body>
     </html>
   )
