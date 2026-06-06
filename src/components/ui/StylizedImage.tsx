@@ -1,10 +1,12 @@
-import Image, { type ImageProps } from 'next/image'
+import Image from 'next/image'
 import clsx from 'clsx'
+import type { ComponentPropsWithoutRef } from 'react'
 
-export function StylizedImage({
-  className,
-  ...props
-}: ImageProps & { className?: string }) {
+type StylizedImageProps = ComponentPropsWithoutRef<typeof Image> & {
+  className?: string
+}
+
+export function StylizedImage({ className, ...props }: StylizedImageProps) {
   return (
     <div className={clsx('relative', className)}>
       {/* Decorative border accent — Studio signature */}
@@ -14,7 +16,7 @@ export function StylizedImage({
           {...props}
           className={clsx(
             'h-full w-full object-cover grayscale transition duration-500 motion-safe:hover:grayscale-0',
-            props.className,
+            typeof props.className === 'string' ? props.className : '',
           )}
         />
         {/* Overlay that fades out on hover */}
