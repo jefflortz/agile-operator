@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 import clsx from 'clsx'
 import { Container } from '@/components/ui/Container'
+import { Logo } from '@/components/ui/Logo'
 
 const NavContext = createContext<{
   logoHovered: boolean
@@ -56,12 +57,7 @@ function Header({
     <Container>
       <div className="flex items-center justify-between">
         <Link href="/" aria-label="Home">
-          <span className={clsx(
-            'font-display text-xl tracking-tight font-medium',
-            invert ? 'text-white' : 'text-navy-900'
-          )}>
-            Agile Operator
-          </span>
+          <Logo className="h-8 w-auto" invert={invert} />
         </Link>
         <div className="flex items-center gap-x-8">
           <Link

@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import seoFields from 'sanity-plugin-seofields'
 import { schemaTypes } from './sanity/schemas'
 
 export default defineConfig({
@@ -55,6 +56,9 @@ export default defineConfig({
           ]),
     }),
     visionTool(),
+    seoFields({
+      seoPreview: true,
+    }),
   ],
 
   schema: {

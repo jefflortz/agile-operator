@@ -122,20 +122,26 @@ export default defineType({
       of: [{ type: 'block' }],
       hidden: ({ document }) => document?.contentType !== 'episode',
     }),
+    defineField({
+      name: 'podcastUrl',
+      title: 'Podcast Audio URL',
+      type: 'url',
+      description: 'Direct MP3/audio file URL from podcast host.',
+      hidden: ({ document }) => document?.contentType !== 'episode',
+    }),
+    defineField({
+      name: 'podcastDuration',
+      title: 'Episode Duration',
+      type: 'string',
+      description: 'e.g. 42:30',
+      hidden: ({ document }) => document?.contentType !== 'episode',
+    }),
 
     // --- SEO ---
     defineField({
-      name: 'seoTitle',
-      title: 'SEO Title',
-      type: 'string',
-      group: 'seo',
-    }),
-    defineField({
-      name: 'seoDescription',
-      title: 'SEO Description',
-      type: 'text',
-      rows: 2,
-      validation: (Rule) => Rule.max(160),
+      name: 'seo',
+      title: 'SEO',
+      type: 'seoFields',
       group: 'seo',
     }),
   ],

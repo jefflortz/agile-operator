@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 type ContentCardProps = {
   title: string
-  slug: string
+  slug: string | { current: string }
   contentType: 'article' | 'episode'
   excerpt?: string
   featuredImage?: { url: string; alt?: string }
@@ -30,7 +30,8 @@ export default function ContentCard({
   category,
   guestName,
 }: ContentCardProps) {
-  const href = `/playbooks/${slug}`
+  const slugStr = typeof slug === 'string' ? slug : slug.current
+  const href = `/playbooks/${slugStr}`
 
   return (
     <Link href={href} className="group block">
