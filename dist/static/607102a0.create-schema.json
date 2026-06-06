@@ -1,0 +1,1952 @@
+[
+  {
+    "fields": [
+      {
+        "description": "Select how search engines should index and follow links on this page.",
+        "hidden": "conditional",
+        "name": "robots",
+        "type": "robots",
+        "title": "Robots Settings"
+      },
+      {
+        "options": {
+          "baseUrl": "https://www.example.com"
+        },
+        "readOnly": true,
+        "name": "preview",
+        "type": "string",
+        "title": "SEO Preview"
+      },
+      {
+        "description": "The meta title is displayed in search engine results as the clickable headline for a given result. It should be concise and accurately reflect the content of the page.",
+        "hidden": "conditional",
+        "name": "title",
+        "type": "string",
+        "title": "Meta Title"
+      },
+      {
+        "rows": 3,
+        "description": "Provide a concise summary of the page content. This description may be used by search engines in search results.",
+        "hidden": "conditional",
+        "name": "description",
+        "type": "text",
+        "title": "Meta Description"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Upload an image that represents the content of the page. This image may be used in social media previews and search engine results.",
+        "hidden": "conditional",
+        "name": "metaImage",
+        "type": "image"
+      },
+      {
+        "description": "Add custom meta attributes to the head of the document for additional SEO and social media integration.",
+        "of": [
+          {
+            "type": "metaAttribute"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "metaAttributes",
+        "type": "array",
+        "title": "Additional Meta Attributes"
+      },
+      {
+        "description": "Add relevant keywords for this page. These keywords will be used for SEO purposes.",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "keywords",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Specify the canonical URL for this page. This helps prevent duplicate content issues by indicating the preferred version of a page.",
+        "hidden": "conditional",
+        "name": "canonicalUrl",
+        "type": "url",
+        "title": "Canonical URL"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "The canonical URL of the page. This should be the full URL including protocol (https://).",
+            "hidden": "conditional",
+            "name": "url",
+            "type": "url",
+            "title": "Open Graph URL"
+          },
+          {
+            "description": "",
+            "hidden": "conditional",
+            "name": "title",
+            "type": "string",
+            "title": "Open Graph Title"
+          },
+          {
+            "rows": 3,
+            "description": "",
+            "hidden": "conditional",
+            "name": "description",
+            "type": "text",
+            "title": "Open Graph Description"
+          },
+          {
+            "description": "The name of your website. This is often the site title.",
+            "hidden": "conditional",
+            "name": "siteName",
+            "type": "string",
+            "title": "Open Graph Site Name"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Website",
+                  "value": "website"
+                },
+                {
+                  "title": "Article",
+                  "value": "article"
+                },
+                {
+                  "title": "Profile",
+                  "value": "profile"
+                },
+                {
+                  "title": "Book",
+                  "value": "book"
+                },
+                {
+                  "title": "Music",
+                  "value": "music"
+                },
+                {
+                  "title": "Video",
+                  "value": "video"
+                },
+                {
+                  "title": "Product",
+                  "value": "product"
+                }
+              ]
+            },
+            "initialValue": "website",
+            "description": "Select the type of content for Open Graph.",
+            "hidden": "conditional",
+            "name": "type",
+            "type": "string",
+            "title": "Open Graph Type"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Upload Image",
+                  "value": "upload"
+                },
+                {
+                  "title": "Image URL",
+                  "value": "url"
+                }
+              ]
+            },
+            "initialValue": "upload",
+            "description": "Choose whether to upload an image or provide an image URL for Open Graph.",
+            "hidden": "conditional",
+            "name": "imageType",
+            "type": "string"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "description": "Recommended size: 1200x630px (minimum 600x315px). Max file size: 5MB. Aspect ratio 1.91:1.",
+            "fields": [
+              {
+                "description": "A description of the image for accessibility purposes.",
+                "name": "alt",
+                "type": "string",
+                "title": "Image Alt Text"
+              }
+            ],
+            "hidden": "conditional",
+            "name": "image",
+            "type": "image",
+            "title": "Open Graph Image"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Enter the full URL of the image. Ensure the image is accessible and meets the recommended size of 1200x630px (minimum 600x315px).",
+            "hidden": "conditional",
+            "name": "imageUrl",
+            "type": "url",
+            "title": "Open Graph Image URL"
+          }
+        ],
+        "name": "openGraph",
+        "type": "object",
+        "title": "Open Graph Settings"
+      },
+      {
+        "fields": [
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Summary",
+                  "value": "summary"
+                },
+                {
+                  "title": "Summary with Large Image",
+                  "value": "summary_large_image"
+                },
+                {
+                  "title": "App",
+                  "value": "app"
+                },
+                {
+                  "title": "Player",
+                  "value": "player"
+                }
+              ]
+            },
+            "initialValue": "summary_large_image",
+            "description": "",
+            "hidden": "conditional",
+            "name": "card",
+            "type": "string",
+            "title": "X Card Type"
+          },
+          {
+            "description": "The X (formerly Twitter) handle of the website (e.g., @example)",
+            "hidden": "conditional",
+            "name": "site",
+            "type": "string",
+            "title": "Site X Handle"
+          },
+          {
+            "description": "The X (formerly Twitter) handle of the content creator (e.g., @creator)",
+            "hidden": "conditional",
+            "name": "creator",
+            "type": "string",
+            "title": "X Creator Handle"
+          },
+          {
+            "description": "The title of the content as it should appear on X (formerly Twitter).",
+            "hidden": "conditional",
+            "name": "title",
+            "type": "string",
+            "title": "X Title"
+          },
+          {
+            "rows": 3,
+            "description": "A brief description of the content for X (formerly Twitter).",
+            "hidden": "conditional",
+            "name": "description",
+            "type": "text",
+            "title": "X Description"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Upload Image",
+                  "value": "upload"
+                },
+                {
+                  "title": "Image URL",
+                  "value": "url"
+                }
+              ]
+            },
+            "initialValue": "upload",
+            "description": "Choose whether to upload an image or provide an image URL for X (formerly Twitter).",
+            "hidden": "conditional",
+            "name": "imageType",
+            "type": "string",
+            "title": "X Image Type"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "description": "An image URL which should be at least 120x120px for \"summary\" card and 280x150px for \"summary_large_image\" card.",
+            "fields": [
+              {
+                "description": "A description of the image for accessibility purposes.",
+                "name": "alt",
+                "type": "string",
+                "title": "Image Alt Text"
+              }
+            ],
+            "hidden": "conditional",
+            "name": "image",
+            "type": "image",
+            "title": "X Image"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Enter the full URL of the image for X (formerly Twitter). Ensure the image is accessible and meets the recommended size.",
+            "hidden": "conditional",
+            "name": "imageUrl",
+            "type": "url",
+            "title": "X Image URL"
+          }
+        ],
+        "name": "twitter",
+        "type": "object",
+        "title": "X (Formerly Twitter)"
+      }
+    ],
+    "name": "seoFields",
+    "type": "object",
+    "title": "SEO Fields"
+  },
+  {
+    "fields": [
+      {
+        "description": "The meta title is displayed in search engine results as the clickable headline for a given result. It should be concise and accurately reflect the content of the page.",
+        "hidden": "conditional",
+        "name": "title",
+        "type": "string",
+        "title": "Meta Title"
+      },
+      {
+        "rows": 3,
+        "description": "Provide a concise summary of the page content. This description may be used by search engines in search results.",
+        "hidden": "conditional",
+        "name": "description",
+        "type": "text",
+        "title": "Meta Description"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Upload an image that represents the content of the page. This image may be used in social media previews and search engine results.",
+        "hidden": "conditional",
+        "name": "metaImage",
+        "type": "image"
+      },
+      {
+        "description": "Add relevant keywords for this page. These keywords will be used for SEO purposes.",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "keywords",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Specify the canonical URL for this page. This helps prevent duplicate content issues by indicating the preferred version of a page.",
+        "hidden": "conditional",
+        "name": "canonicalUrl",
+        "type": "url",
+        "title": "Canonical URL"
+      },
+      {
+        "description": "Add custom meta attributes to the head of the document for additional SEO and social media integration.",
+        "of": [
+          {
+            "type": "metaAttribute"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "metaAttributes",
+        "type": "array",
+        "title": "Additional Meta Attributes"
+      }
+    ],
+    "name": "baseMeta",
+    "type": "object",
+    "title": "Basic Meta Settings"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The canonical URL of the page. This should be the full URL including protocol (https://).",
+        "hidden": "conditional",
+        "name": "url",
+        "type": "url",
+        "title": "Open Graph URL"
+      },
+      {
+        "description": "",
+        "hidden": "conditional",
+        "name": "title",
+        "type": "string",
+        "title": "Open Graph Title"
+      },
+      {
+        "rows": 3,
+        "description": "",
+        "hidden": "conditional",
+        "name": "description",
+        "type": "text",
+        "title": "Open Graph Description"
+      },
+      {
+        "description": "The name of your website. This is often the site title.",
+        "hidden": "conditional",
+        "name": "siteName",
+        "type": "string",
+        "title": "Open Graph Site Name"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Website",
+              "value": "website"
+            },
+            {
+              "title": "Article",
+              "value": "article"
+            },
+            {
+              "title": "Profile",
+              "value": "profile"
+            },
+            {
+              "title": "Book",
+              "value": "book"
+            },
+            {
+              "title": "Music",
+              "value": "music"
+            },
+            {
+              "title": "Video",
+              "value": "video"
+            },
+            {
+              "title": "Product",
+              "value": "product"
+            }
+          ]
+        },
+        "initialValue": "website",
+        "description": "Select the type of content for Open Graph.",
+        "hidden": "conditional",
+        "name": "type",
+        "type": "string",
+        "title": "Open Graph Type"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Upload Image",
+              "value": "upload"
+            },
+            {
+              "title": "Image URL",
+              "value": "url"
+            }
+          ]
+        },
+        "initialValue": "upload",
+        "description": "Choose whether to upload an image or provide an image URL for Open Graph.",
+        "hidden": "conditional",
+        "name": "imageType",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Recommended size: 1200x630px (minimum 600x315px). Max file size: 5MB. Aspect ratio 1.91:1.",
+        "fields": [
+          {
+            "description": "A description of the image for accessibility purposes.",
+            "name": "alt",
+            "type": "string",
+            "title": "Image Alt Text"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "image",
+        "type": "image",
+        "title": "Open Graph Image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Enter the full URL of the image. Ensure the image is accessible and meets the recommended size of 1200x630px (minimum 600x315px).",
+        "hidden": "conditional",
+        "name": "imageUrl",
+        "type": "url",
+        "title": "Open Graph Image URL"
+      }
+    ],
+    "name": "openGraph",
+    "type": "object",
+    "title": "Open Graph Settings"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Summary",
+              "value": "summary"
+            },
+            {
+              "title": "Summary with Large Image",
+              "value": "summary_large_image"
+            },
+            {
+              "title": "App",
+              "value": "app"
+            },
+            {
+              "title": "Player",
+              "value": "player"
+            }
+          ]
+        },
+        "initialValue": "summary_large_image",
+        "description": "",
+        "hidden": "conditional",
+        "name": "card",
+        "type": "string",
+        "title": "X Card Type"
+      },
+      {
+        "description": "The X (formerly Twitter) handle of the website (e.g., @example)",
+        "hidden": "conditional",
+        "name": "site",
+        "type": "string",
+        "title": "Site X Handle"
+      },
+      {
+        "description": "The X (formerly Twitter) handle of the content creator (e.g., @creator)",
+        "hidden": "conditional",
+        "name": "creator",
+        "type": "string",
+        "title": "X Creator Handle"
+      },
+      {
+        "description": "The title of the content as it should appear on X (formerly Twitter).",
+        "hidden": "conditional",
+        "name": "title",
+        "type": "string",
+        "title": "X Title"
+      },
+      {
+        "rows": 3,
+        "description": "A brief description of the content for X (formerly Twitter).",
+        "hidden": "conditional",
+        "name": "description",
+        "type": "text",
+        "title": "X Description"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Upload Image",
+              "value": "upload"
+            },
+            {
+              "title": "Image URL",
+              "value": "url"
+            }
+          ]
+        },
+        "initialValue": "upload",
+        "description": "Choose whether to upload an image or provide an image URL for X (formerly Twitter).",
+        "hidden": "conditional",
+        "name": "imageType",
+        "type": "string",
+        "title": "X Image Type"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "An image URL which should be at least 120x120px for \"summary\" card and 280x150px for \"summary_large_image\" card.",
+        "fields": [
+          {
+            "description": "A description of the image for accessibility purposes.",
+            "name": "alt",
+            "type": "string",
+            "title": "Image Alt Text"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "image",
+        "type": "image",
+        "title": "X Image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Enter the full URL of the image for X (formerly Twitter). Ensure the image is accessible and meets the recommended size.",
+        "hidden": "conditional",
+        "name": "imageUrl",
+        "type": "url",
+        "title": "X Image URL"
+      }
+    ],
+    "name": "twitter",
+    "type": "object",
+    "title": "X (Formerly Twitter)"
+  },
+  {
+    "fields": [
+      {
+        "name": "key",
+        "type": "string",
+        "title": "Attribute Name"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "String",
+              "value": "string"
+            },
+            {
+              "title": "Image",
+              "value": "image"
+            }
+          ]
+        },
+        "initialValue": "string",
+        "name": "type",
+        "type": "string",
+        "title": "Attribute Value Type"
+      },
+      {
+        "hidden": "conditional",
+        "name": "value",
+        "type": "string",
+        "title": "Attribute Value"
+      },
+      {
+        "hidden": "conditional",
+        "name": "image",
+        "type": "image",
+        "title": "Attribute Image Value"
+      }
+    ],
+    "name": "metaAttribute",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "description": "Add custom meta attributes to the head of the document for additional SEO and social media integration.",
+        "of": [
+          {
+            "type": "metaAttribute"
+          }
+        ],
+        "name": "metaAttributes",
+        "type": "array"
+      }
+    ],
+    "name": "metaTag",
+    "type": "object"
+  },
+  {
+    "description": "Select how search engines should index and follow links on this page.",
+    "fields": [
+      {
+        "initialValue": false,
+        "description": "Enable this to prevent search engines from indexing this page. The page will not appear in search results.",
+        "name": "noIndex",
+        "type": "boolean"
+      },
+      {
+        "initialValue": false,
+        "description": "Enable this to prevent search engines from following links on this page. Links will not pass SEO value.",
+        "name": "noFollow",
+        "type": "boolean"
+      }
+    ],
+    "name": "robots",
+    "type": "object",
+    "title": "Robots Settings"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Article",
+              "value": "article"
+            },
+            {
+              "title": "Podcast Episode",
+              "value": "episode"
+            }
+          ],
+          "layout": "radio"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "article",
+                  "episode"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "contentType",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "publishedAt",
+        "type": "datetime"
+      },
+      {
+        "to": [
+          {
+            "type": "author"
+          }
+        ],
+        "name": "author",
+        "type": "reference"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "category"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to category"
+          }
+        ],
+        "name": "categories",
+        "type": "array"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text"
+          }
+        ],
+        "name": "featuredImage",
+        "type": "image"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 320
+              },
+              {
+                "flag": "max",
+                "constraint": 560
+              }
+            ],
+            "level": "error",
+            "message": "Excerpt must be 560 characters or fewer."
+          }
+        ],
+        "description": "Card preview text. 320–560 characters for consistent card sizing.",
+        "name": "excerpt",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text"
+              },
+              {
+                "name": "caption",
+                "type": "string"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "body",
+        "type": "array"
+      },
+      {
+        "hidden": "conditional",
+        "name": "guestName",
+        "type": "string"
+      },
+      {
+        "hidden": "conditional",
+        "name": "guestTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "youtubeUrl",
+        "type": "url",
+        "title": "YouTube URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "spotifyUrl",
+        "type": "url",
+        "title": "Spotify URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "applePodcastUrl",
+        "type": "url",
+        "title": "Apple Podcasts URL"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "showNotes",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Direct MP3/audio file URL from podcast host.",
+        "hidden": "conditional",
+        "name": "podcastUrl",
+        "type": "url",
+        "title": "Podcast Audio URL"
+      },
+      {
+        "description": "e.g. 42:30",
+        "hidden": "conditional",
+        "name": "podcastDuration",
+        "type": "string",
+        "title": "Episode Duration"
+      },
+      {
+        "name": "seo",
+        "type": "seoFields",
+        "title": "SEO"
+      }
+    ],
+    "name": "playbookContent",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Title / Role"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "bio",
+        "type": "array"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "photo",
+        "type": "image"
+      }
+    ],
+    "name": "author",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 2,
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "category",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "description",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 3
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Up to 3 outcomes",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "outcomes",
+        "type": "array"
+      },
+      {
+        "description": "1 = first, 2 = second, 3 = third",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "service",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "tagline",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "coverImage",
+        "type": "image",
+        "title": "Cover Image / Show Art"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "spotifyUrl",
+        "type": "url",
+        "title": "Spotify URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "youtubeChannelUrl",
+        "type": "url",
+        "title": "YouTube Channel URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "applePodcastUrl",
+        "type": "url",
+        "title": "Apple Podcasts URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "rssUrl",
+        "type": "url",
+        "title": "RSS Feed URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 4
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Episodes to feature on the landing page (3–4 recommended)",
+        "of": [
+          {
+            "to": [
+              {
+                "type": "playbookContent"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to playbook content"
+          }
+        ],
+        "name": "featuredEpisodes",
+        "type": "array"
+      }
+    ],
+    "name": "marginsAndMandates",
+    "type": "document",
+    "title": "Margins & Mandates"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Forming (applications open)",
+              "value": "forming"
+            },
+            {
+              "title": "Active (cohort underway)",
+              "value": "active"
+            },
+            {
+              "title": "Closed (not accepting applications)",
+              "value": "closed"
+            }
+          ],
+          "layout": "radio"
+        },
+        "name": "cohortStatus",
+        "type": "string"
+      },
+      {
+        "description": "Shown publicly — e.g. \"Founding cohort forming Summer 2026\"",
+        "name": "cohortLabel",
+        "type": "string"
+      },
+      {
+        "name": "seatsTotal",
+        "type": "number",
+        "title": "Total Seats"
+      },
+      {
+        "name": "seatsRemaining",
+        "type": "number"
+      },
+      {
+        "description": "Controls whether the Apply form is visible on the page",
+        "name": "applicationOpen",
+        "type": "boolean"
+      }
+    ],
+    "name": "collectiveEdge",
+    "type": "document"
+  }
+]

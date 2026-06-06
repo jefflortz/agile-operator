@@ -73,6 +73,36 @@ export async function getAllContent(
   return { items, total }
 }
 
+// Lightweight metadata fetch for generateMetadata (avoids fetching full body twice)
+export async function getContentMetadata(slug: string): Promise<{
+  title: string
+  excerpt?: string
+  publishedAt?: string
+  featuredImage?: { asset: { _ref: string }; alt?: string }
+  seo?: {
+    seoTitle?: string
+    seoDescription?: string
+    keywords?: string[]
+    canonicalUrl?: string
+    openGraph?: { title?: string; description?: string; image?: string }
+  }
+} | null> {
+  return client.fetch(
+    `*[_type == "playbookContent" && slug.current == $slug][0] {
+      title, excerpt, publishedAt, featuredImage, seo
+    }`,
+    { slug }
+  )
+}
+
+// All slugs for sitemap
+export async function getAllSlugs(): Promise<string[]> {
+  const docs = await client.fetch(
+    `*[_type == "playbookContent" && defined(slug.current)] { "slug": slug.current }`
+  )
+  return docs.map((d: { slug: string }) => d.slug)
+}
+
 // Single content item by slug
 export async function getContentBySlug(slug: string): Promise<PlaybookContent | null> {
   return client.fetch(

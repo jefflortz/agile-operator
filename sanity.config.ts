@@ -58,6 +58,9 @@ export default defineConfig({
     visionTool(),
     seoFields({
       seoPreview: true,
+      healthDashboard: {
+        licenseKey: process.env.SANITY_STUDIO_SEO_LICENSE_KEY ?? 'SEOF-40D0-BDFF-FDF5',
+      },
     }),
   ],
 

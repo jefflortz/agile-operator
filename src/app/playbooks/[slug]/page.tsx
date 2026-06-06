@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
@@ -9,8 +10,54 @@ import ContentCard from '@/components/ui/ContentCard'
 import GiscusComments from '@/components/ui/GiscusComments'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 import ShareBar from '@/components/ui/ShareBar'
-import { getContentBySlug, getRelatedContent } from '@/lib/queries'
+import { getContentBySlug, getContentMetadata, getRelatedContent } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
+
+// ── Metadata ──────────────────────────────────────────────────────────────────
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const doc = await getContentMetadata(slug)
+  if (!doc) return {}
+
+  const seoTitle = doc.seo?.seoTitle || `${doc.title} | Agile Operator`
+  const seoDescription = doc.seo?.seoDescription || doc.excerpt || ''
+  const canonical = doc.seo?.canonicalUrl || `https://agile-operator.com/playbooks/${slug}`
+  const keywords = doc.seo?.keywords?.join(', ') || undefined
+
+  // OG image: prefer explicit seo.openGraph.image, fall back to featuredImage
+  const ogImageUrl = doc.seo?.openGraph?.image
+    || (doc.featuredImage ? urlFor(doc.featuredImage).width(1200).height(630).url() : null)
+    || undefined
+
+  return {
+    // `absolute` bypasses the root layout template so we don't get "Title | Agile Operator | Agile Operator"
+    title: { absolute: seoTitle },
+    description: seoDescription,
+    ...(keywords && { keywords }),
+    alternates: { canonical },
+    openGraph: {
+      title: doc.seo?.openGraph?.title || seoTitle,
+      description: doc.seo?.openGraph?.description || seoDescription,
+      url: canonical,
+      type: 'article',
+      ...(doc.publishedAt && { publishedTime: doc.publishedAt }),
+      ...(ogImageUrl && {
+        images: [{ url: ogImageUrl, width: 1200, height: 630, alt: doc.title }],
+      }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seoTitle,
+      description: seoDescription,
+      ...(ogImageUrl && { images: [ogImageUrl] }),
+    },
+  }
+}
 
 // ── Portable Text components ─────────────────────────────────────────────────
 

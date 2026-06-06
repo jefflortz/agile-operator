@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
@@ -10,6 +11,26 @@ import Button from '@/components/ui/Button'
 import { getLatestArticles, getLatestEpisodes, getServices } from '@/lib/queries'
 import type { PlaybookContentPreview, Service } from '@/lib/types'
 import { urlFor } from '@/lib/sanity'
+
+export const metadata: Metadata = {
+  title: 'Agile Operator | Strategic Growth Advisory for Technology CEOs',
+  description:
+    'Proven playbooks and frameworks for B2B SaaS operators navigating growth. Jeff Lortz helps technology CEOs balance margins and mandates at $5M–$50M ARR.',
+  keywords: 'B2B SaaS growth advisory, technology CEO coaching, SaaS operator playbooks, Boston growth advisory, executive leadership',
+  alternates: { canonical: 'https://agile-operator.com' },
+  openGraph: {
+    title: 'Agile Operator | Strategic Growth Advisory for Technology CEOs',
+    description:
+      'Proven playbooks and frameworks for B2B SaaS operators navigating growth. Balance margins and mandates.',
+    url: 'https://agile-operator.com',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Agile Operator | Strategic Growth Advisory for Technology CEOs',
+    description: 'Proven playbooks for B2B SaaS operators navigating growth.',
+  },
+}
 
 const fallbackServices: Service[] = [
   {

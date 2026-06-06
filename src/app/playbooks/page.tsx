@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
@@ -5,6 +6,20 @@ import ContentCard from '@/components/ui/ContentCard'
 import { getAllContent, getActiveCategories } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import type { PlaybookContentPreview } from '@/lib/types'
+
+export const metadata: Metadata = {
+  title: 'Playbooks | Agile Operator',
+  description:
+    'Articles and podcast episodes covering SaaS growth, executive leadership, go-to-market strategy, and operational frameworks for technology CEOs and B2B operators.',
+  keywords: 'SaaS growth playbooks, B2B operator frameworks, technology CEO articles, Margins and Mandates podcast',
+  alternates: { canonical: 'https://agile-operator.com/playbooks' },
+  openGraph: {
+    title: 'Playbooks | Agile Operator',
+    description: 'Articles and podcast episodes for technology CEOs and B2B SaaS operators.',
+    url: 'https://agile-operator.com/playbooks',
+    type: 'website',
+  },
+}
 
 type FilterType = 'all' | 'article' | 'episode'
 
