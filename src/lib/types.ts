@@ -3,13 +3,14 @@ export type ContentType = 'article' | 'episode'
 export type Category = {
   _id: string
   title: string
-  slug: { current: string }
+  slug: string  // projected as slug.current in all GROQ queries
 }
 
 export type Author = {
   _id: string
   name: string
   title?: string
+  bio?: unknown[]
   photo?: SanityImage
 }
 
@@ -32,13 +33,14 @@ export type PlaybookContent = {
   featuredImage?: SanityImage
   excerpt?: string
   // Article fields
-  body?: unknown[]
+  body?: any[]
   // Episode fields
   guestName?: string
   guestTitle?: string
   youtubeUrl?: string
   spotifyUrl?: string
   applePodcastUrl?: string
+  podcastDuration?: string
   showNotes?: unknown[]
   seoTitle?: string
   seoDescription?: string
@@ -68,4 +70,15 @@ export type Service = {
   description?: unknown[]
   outcomes?: string[]
   order?: number
+}
+
+export type MarginsAndMandates = {
+  tagline?: string
+  description?: string
+  coverImage?: SanityImage
+  spotifyUrl?: string
+  youtubeChannelUrl?: string
+  applePodcastUrl?: string
+  rssUrl?: string
+  featuredEpisodes?: PlaybookContentPreview[]
 }

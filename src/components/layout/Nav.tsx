@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useId, useRef, useState } from 'react'
+import { createContext, useEffect, useId, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
@@ -57,7 +57,7 @@ function Header({
     <Container>
       <div className="flex items-center justify-between">
         <Link href="/" aria-label="Home">
-          <Logo className="h-8 w-auto" invert={invert} />
+          <Logo className="h-20" invert={invert} />
         </Link>
         <div className="flex items-center gap-x-8">
           <Link
@@ -126,9 +126,31 @@ function NavInner({ children }: { children: React.ReactNode }) {
   let panelId = useId()
   let [expanded, setExpanded] = useState(false)
   let [isTransitioning, setIsTransitioning] = useState(false)
+  let [atTop, setAtTop] = useState(true)
   let openRef = useRef<HTMLButtonElement>(null)
   let closeRef = useRef<HTMLButtonElement>(null)
   let shouldReduceMotion = useReducedMotion()
+  let pathname = usePathname()
+
+  // Detect pages that have a full-bleed dark hero (article/episode detail, Collective Edge, podcast)
+  const isHeroPage =
+    /^\/playbooks\/[^/]+/.test(pathname) ||
+    pathname === '/collective-edge' ||
+    pathname === '/margins-and-mandates'
+
+  useEffect(() => {
+    if (!isHeroPage) {
+      setAtTop(false)
+      return
+    }
+    const handleScroll = () => setAtTop(window.scrollY < 80)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [isHeroPage])
+
+  // On hero pages: invert (white) when at top over dark image, normal when scrolled
+  const headerInvert = isHeroPage && atTop
 
   useEffect(() => {
     function onClick(event: MouseEvent) {
@@ -147,9 +169,12 @@ function NavInner({ children }: { children: React.ReactNode }) {
   return (
     <MotionConfig transition={shouldReduceMotion || !isTransitioning ? { duration: 0 } : undefined}>
       <header>
-        {/* Static header bar */}
+        {/* Static header bar — transparent over hero, gains frosted bg when scrolled */}
         <div
-          className="absolute top-2 right-0 left-0 z-40 pt-14"
+          className={clsx(
+            'absolute top-2 right-0 left-0 z-40 pt-14 transition-all duration-300',
+            isHeroPage && !atTop && 'bg-white/95 backdrop-blur-sm shadow-sm',
+          )}
           aria-hidden={expanded ? 'true' : undefined}
           inert={expanded ? true : undefined}
         >
@@ -158,6 +183,7 @@ function NavInner({ children }: { children: React.ReactNode }) {
             icon={MenuIcon}
             toggleRef={openRef}
             expanded={expanded}
+            invert={headerInvert}
             onToggle={() => {
               setIsTransitioning(true)
               setExpanded((e) => !e)

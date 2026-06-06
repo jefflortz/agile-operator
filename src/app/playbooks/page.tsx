@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
-import { SectionIntro } from '@/components/ui/SectionIntro'
 import ContentCard from '@/components/ui/ContentCard'
 import { getAllContent, getActiveCategories } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
@@ -59,92 +58,190 @@ export default async function PlaybooksPage({
     { label: 'Episodes', value: 'episode' },
   ]
 
-  // Only show category pills for All or Articles (episodes don't use categories)
-  const showCategoryPills = filter !== 'episode' && categories.length > 0
+  const showCategoryFilter = filter !== 'episode' && categories.length > 0
 
   return (
-    <>
-      <div className="pt-24 pb-16 sm:pt-32">
-        <SectionIntro
-          eyebrow="Playbooks"
-          title="Frameworks and conversations for operators."
-        >
-          <p>
+    <div className="pt-24 pb-24 sm:pt-32">
+      {/* Page header — full width */}
+      <Container>
+        <FadeIn className="max-w-2xl">
+          <span className="mb-4 block font-sans text-xs font-semibold uppercase tracking-widest text-gold-500">
+            Playbooks
+          </span>
+          <h1 className="font-display text-4xl font-medium tracking-tight text-navy-900 sm:text-5xl text-balance">
+            Frameworks and conversations for operators.
+          </h1>
+          <p className="mt-5 text-xl text-gray-600">
             Articles and podcast episodes from the field — the plays, pivots, and
             pressure-tested leadership of operators who have been in the seat.
           </p>
-        </SectionIntro>
+        </FadeIn>
+      </Container>
 
-        <Container className="mt-12">
-          <FadeIn>
-            {/* Row 1: Type tabs */}
-            <div className="flex gap-2 border-b border-navy-100">
-              {tabs.map((tab) => (
-                <Link
-                  key={tab.value}
-                  href={buildHref(filter, activeCategory, tab.value, tab.value === 'episode' ? undefined : activeCategory)}
-                  className={`px-4 py-2 text-sm font-sans font-medium transition-colors border-b-2 -mb-px ${
-                    filter === tab.value
-                      ? 'border-navy-900 text-navy-900'
-                      : 'border-transparent text-gray-500 hover:text-navy-700'
-                  }`}
-                >
-                  {tab.label}
-                </Link>
-              ))}
-              <span className="ml-auto self-center text-xs text-gray-400">
-                {total} {total === 1 ? 'item' : 'items'}
-              </span>
-            </div>
+      {/* Two-column layout */}
+      <Container className="mt-14">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_300px]">
 
-            {/* Row 2: Category pills */}
-            {showCategoryPills && (
-              <div className="flex flex-wrap gap-2 mt-4">
-                <Link
-                  href={buildHref(filter, activeCategory, filter, undefined)}
-                  className={`px-3 py-1 rounded-full text-xs font-sans font-medium transition-colors ${
-                    !activeCategory
-                      ? 'bg-navy-900 text-white'
-                      : 'bg-navy-50 text-navy-600 hover:bg-navy-100'
-                  }`}
-                >
-                  All topics
-                </Link>
-                {categories.map((cat) => (
+          {/* ── Main column ── */}
+          <div className="min-w-0">
+            <FadeIn>
+              {/* Type tabs */}
+              <div className="flex items-end gap-1 border-b border-navy-100">
+                {tabs.map((tab) => (
                   <Link
-                    key={cat.slug}
-                    href={buildHref(filter, activeCategory, filter, cat.slug)}
+                    key={tab.value}
+                    href={buildHref(filter, activeCategory, tab.value, tab.value === 'episode' ? undefined : activeCategory)}
+                    className={`px-4 py-2.5 text-sm font-sans font-medium transition-colors border-b-2 -mb-px ${
+                      filter === tab.value
+                        ? 'border-navy-900 text-navy-900'
+                        : 'border-transparent text-gray-400 hover:text-navy-700'
+                    }`}
+                  >
+                    {tab.label}
+                  </Link>
+                ))}
+                <span className="ml-auto pb-2.5 text-xs text-gray-400 font-sans">
+                  {total} {total === 1 ? 'item' : 'items'}
+                </span>
+              </div>
+
+              {/* Category filter — inline under tabs */}
+              {showCategoryFilter && (
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <Link
+                    href={buildHref(filter, activeCategory, filter, undefined)}
                     className={`px-3 py-1 rounded-full text-xs font-sans font-medium transition-colors ${
-                      activeCategory === cat.slug
+                      !activeCategory
                         ? 'bg-navy-900 text-white'
                         : 'bg-navy-50 text-navy-600 hover:bg-navy-100'
                     }`}
                   >
-                    {cat.title}
+                    All topics
                   </Link>
-                ))}
-              </div>
-            )}
-          </FadeIn>
-
-          {/* Content grid */}
-          {items.length > 0 ? (
-            <FadeInStagger className="mt-10">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {items.map((item) => (
-                  <FadeIn key={item._id}>
-                    <ContentCard {...toCardProps(item)} />
-                  </FadeIn>
-                ))}
-              </div>
-            </FadeInStagger>
-          ) : (
-            <FadeIn className="mt-16">
-              <p className="text-gray-400 text-sm">No content found for this filter.</p>
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat.slug}
+                      href={buildHref(filter, activeCategory, filter, cat.slug)}
+                      className={`px-3 py-1 rounded-full text-xs font-sans font-medium transition-colors ${
+                        activeCategory === cat.slug
+                          ? 'bg-navy-900 text-white'
+                          : 'bg-navy-50 text-navy-600 hover:bg-navy-100'
+                      }`}
+                    >
+                      {cat.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </FadeIn>
-          )}
-        </Container>
-      </div>
-    </>
+
+            {/* Content grid */}
+            {items.length > 0 ? (
+              <FadeInStagger className="mt-8">
+                {/* Episodes: single column (horizontal card reads better full-width) */}
+                {/* Articles / All: two-column grid */}
+                <div className={filter === 'episode' ? 'flex flex-col' : 'grid grid-cols-1 sm:grid-cols-2 gap-x-8 items-stretch'}>
+                  {items.map((item) => (
+                    <FadeIn key={item._id}>
+                      <ContentCard {...toCardProps(item)} />
+                    </FadeIn>
+                  ))}
+                </div>
+              </FadeInStagger>
+            ) : (
+              <FadeIn className="mt-16">
+                <p className="text-gray-400 text-sm">No content found for this filter.</p>
+              </FadeIn>
+            )}
+          </div>
+
+          {/* ── Sidebar ── */}
+          <aside className="hidden lg:block">
+            <div className="sticky top-28 space-y-10">
+
+              {/* Margins & Mandates — Spotify embed */}
+              <div>
+                <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-4">
+                  Margins &amp; Mandates
+                </p>
+                <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+                  The podcast for operators in the seat — conversations on growth, leadership, and the decisions that matter.
+                </p>
+                <iframe
+                  src="https://open.spotify.com/embed/show/0JbihvBwMqoXr8EdEyWSOu?utm_source=generator&theme=0"
+                  width="100%"
+                  height="152"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="rounded-xl"
+                  title="Margins and Mandates on Spotify"
+                />
+              </div>
+
+              <div className="border-t border-navy-100" />
+
+              {/* Browse by Topic */}
+              <div>
+                <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-4">
+                  Browse by Topic
+                </p>
+                <nav className="space-y-1">
+                  <Link
+                    href="/playbooks"
+                    className={`flex items-center justify-between py-1.5 text-sm transition-colors group ${
+                      !activeCategory && filter === 'all'
+                        ? 'text-navy-900 font-medium'
+                        : 'text-gray-500 hover:text-navy-900'
+                    }`}
+                  >
+                    <span>All content</span>
+                    <span className="text-xs text-gray-400 group-hover:text-gray-600">{total}</span>
+                  </Link>
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat.slug}
+                      href={`/playbooks?category=${cat.slug}`}
+                      className={`flex items-center justify-between py-1.5 text-sm transition-colors group ${
+                        activeCategory === cat.slug
+                          ? 'text-navy-900 font-medium'
+                          : 'text-gray-500 hover:text-navy-900'
+                      }`}
+                    >
+                      <span>{cat.title}</span>
+                      <span className="text-xs text-gray-400 group-hover:text-gray-600">{cat.total}</span>
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+
+              <div className="border-t border-navy-100" />
+
+              {/* Newsletter CTA */}
+              <div>
+                <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-3">
+                  Stay Current
+                </p>
+                <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                  New articles and episodes delivered to your inbox.
+                </p>
+                <a
+                  href="https://agileoperator.substack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-navy-900 border border-navy-200 rounded px-4 py-2 hover:bg-navy-50 transition-colors"
+                >
+                  Subscribe on Substack
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+
+            </div>
+          </aside>
+
+        </div>
+      </Container>
+    </div>
   )
 }

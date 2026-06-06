@@ -62,7 +62,10 @@ export default defineType({
       title: 'Excerpt',
       type: 'text',
       rows: 3,
-      validation: (Rule) => Rule.max(150),
+      description: 'Card preview text. 320–560 characters for consistent card sizing.',
+      validation: (Rule) => Rule.required()
+        .min(320).error('Excerpt must be at least 320 characters.')
+        .max(560).error('Excerpt must be 560 characters or fewer.'),
     }),
 
     // --- Article fields ---

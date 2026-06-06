@@ -1,5 +1,5 @@
 import { client } from './sanity'
-import type { PlaybookContentPreview, PlaybookContent, Service } from './types'
+import type { PlaybookContentPreview, PlaybookContent, Service, MarginsAndMandates } from './types'
 
 // Shared projection for card previews
 const previewProjection = `
@@ -80,18 +80,53 @@ export async function getContentBySlug(slug: string): Promise<PlaybookContent | 
       ...,
       "slug": slug.current,
       "categories": categories[]->{_id, title, "slug": slug.current},
-      "author": author->{_id, name, title, photo}
+      "author": author->{_id, name, title, bio, photo}
     }`,
     { slug }
   )
 }
 
-// Categories that have at least one article
-export async function getActiveCategories(): Promise<{ title: string; slug: string }[]> {
+// Categories that have at least one article, with counts
+export async function getActiveCategories(): Promise<{ title: string; slug: string; total: number }[]> {
   return client.fetch(
-    `*[_type == "category" && count(*[_type == "playbookContent" && references(^._id)]) > 0] | order(title asc) {
+    `*[_type == "category" && count(*[_type == "playbookContent" && references(^._id)]) > 0] {
       title,
-      "slug": slug.current
+      "slug": slug.current,
+      "total": count(*[_type == "playbookContent" && references(^._id)])
+    } | order(total desc)`
+  )
+}
+
+// Related content — matched on primary category, excluding current slug
+export async function getRelatedContent(
+  categoryIds: string[],
+  excludeSlug: string,
+  limit = 3
+): Promise<PlaybookContentPreview[]> {
+  if (!categoryIds.length) return []
+  const firstCategoryId = categoryIds[0]
+  return client.fetch(
+    `*[_type == "playbookContent" && slug.current != $excludeSlug && references($firstCategoryId)] | order(publishedAt desc) [0...${limit}] {
+      ${previewProjection}
+    }`,
+    { firstCategoryId, excludeSlug }
+  )
+}
+
+// Margins & Mandates singleton
+export async function getMarginsAndMandates(): Promise<MarginsAndMandates | null> {
+  return client.fetch(
+    `*[_type == "marginsAndMandates"][0] {
+      tagline,
+      description,
+      coverImage,
+      spotifyUrl,
+      youtubeChannelUrl,
+      applePodcastUrl,
+      rssUrl,
+      "featuredEpisodes": featuredEpisodes[]->{
+        ${previewProjection}
+      }
     }`
   )
 }

@@ -6,9 +6,9 @@ export function Logo({ className, invert = false }: { className?: string; invert
     <Image
       src="/SVG/Agile Operator-01.svg"
       alt="Agile Operator"
-      width={160}
-      height={48}
-      className={clsx(className, invert && 'brightness-0 invert')}
+      width={480}
+      height={120}
+      className={clsx('w-auto', className, invert && 'brightness-0 invert')}
       priority
     />
   )

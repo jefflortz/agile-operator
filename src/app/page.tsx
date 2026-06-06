@@ -7,25 +7,31 @@ import { Testimonial } from '@/components/ui/Testimonial'
 import { GridPattern } from '@/components/ui/GridPattern'
 import ContentCard from '@/components/ui/ContentCard'
 import Button from '@/components/ui/Button'
-import { getLatestArticles, getLatestEpisodes } from '@/lib/queries'
-import type { PlaybookContentPreview } from '@/lib/types'
+import { getLatestArticles, getLatestEpisodes, getServices } from '@/lib/queries'
+import type { PlaybookContentPreview, Service } from '@/lib/types'
 import { urlFor } from '@/lib/sanity'
 
-const services = [
+const fallbackServices: Service[] = [
   {
+    _id: 'fallback-1',
     title: 'Growth Advisory',
-    description:
+    headline:
       'Strategy, planning, and operational execution for growth-stage companies navigating complexity under investor pressure.',
+    order: 1,
   },
   {
+    _id: 'fallback-2',
     title: 'Executive Coaching',
-    description:
+    headline:
       '1:1 coaching for individual leaders navigating performance challenges, executive transitions, and scaling demands.',
+    order: 2,
   },
   {
+    _id: 'fallback-3',
     title: 'Interim / Fractional Executive',
-    description:
+    headline:
       'Experienced CEO, CMO, or operator leadership on a defined-term basis when you need steady hands fast.',
+    order: 3,
   },
 ]
 
@@ -48,10 +54,12 @@ function toCardProps(item: PlaybookContentPreview) {
 }
 
 export default async function Home() {
-  const [articles, episodes] = await Promise.all([
+  const [articles, episodes, sanityServices] = await Promise.all([
     getLatestArticles(3),
     getLatestEpisodes(2),
+    getServices(),
   ])
+  const services = sanityServices.length > 0 ? sanityServices : fallbackServices
 
   return (
     <>
@@ -64,7 +72,7 @@ export default async function Home() {
         />
         <Container className="pb-24 pt-20 sm:pb-32 sm:pt-32 md:pt-40">
           <FadeIn className="max-w-3xl">
-            <p className="font-sans text-sm font-semibold uppercase tracking-widest text-gold-500 mb-6">
+            <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-4">
               Strategic Growth Advisory
             </p>
             <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-navy-900 sm:text-7xl">
@@ -95,13 +103,13 @@ export default async function Home() {
           <FadeInStagger>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               {services.map((service) => (
-                <FadeIn key={service.title}>
+                <FadeIn key={service._id}>
                   <Border className="pt-8">
                     <h3 className="font-display text-2xl font-semibold text-navy-900">
                       {service.title}
                     </h3>
                     <p className="mt-4 text-base text-gray-600 leading-relaxed">
-                      {service.description}
+                      {service.headline}
                     </p>
                   </Border>
                 </FadeIn>
@@ -118,7 +126,7 @@ export default async function Home() {
       <div className="mt-24 sm:mt-32 lg:mt-40 bg-navy-900 py-24 sm:py-32">
         <Container>
           <FadeIn>
-            <p className="font-sans text-sm font-semibold uppercase tracking-widest text-gold-400 mb-6">
+            <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-400 mb-4">
               Collective Edge — CEO Council
             </p>
             <h2 className="font-display text-4xl font-medium tracking-tight text-white sm:text-5xl max-w-2xl text-balance">
@@ -278,13 +286,13 @@ export default async function Home() {
       </div>
 
       {/* CTA */}
-      <div className="mt-24 sm:mt-32 lg:mt-40 bg-navy-900 py-24 sm:py-32">
+      <div className="mt-24 sm:mt-32 lg:mt-40 bg-navy-50 py-24 sm:py-32">
         <Container>
           <FadeIn className="text-center">
-            <h2 className="font-display text-3xl font-medium tracking-tight text-white sm:text-4xl">
+            <h2 className="font-display text-3xl font-medium tracking-tight text-navy-900 sm:text-4xl">
               Ready to transform your business?
             </h2>
-            <p className="mt-4 text-navy-200 max-w-md mx-auto">
+            <p className="mt-4 text-gray-600 max-w-md mx-auto">
               Schedule a no-obligation strategy session to discuss your challenges.
             </p>
             <div className="mt-8">
