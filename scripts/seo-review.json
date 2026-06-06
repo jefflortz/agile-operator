@@ -9,10 +9,10 @@
       "peer advisory council for CEOs",
       "CEO peer groups B2B SaaS",
       "technology CEO mentorship",
-      "executive peer advisory board"
+      "executive peer advisory boards"
     ],
     "seoTitle": "Peer Advisory Council for Tech CEOs | Agile Operator",
-    "seoDescription": "Combat CEO isolation with a peer advisory council. Get candid guidance from founders who've faced your exact decisions."
+    "seoDescription": "Combat CEO isolation with a peer advisory council. Get candid counsel from founders who've faced your exact decisions."
   },
   {
     "id": "hYkuWSRfJGMBZabsJkn7VY",
@@ -23,26 +23,87 @@
     "keywords": [
       "sustainable growth SaaS",
       "referral-driven business model",
-      "profitable scaling strategy",
-      "SaaS operational efficiency"
+      "profitable scaling without burnout",
+      "B2B SaaS operator growth strategy"
     ],
     "seoTitle": "Sustainable Growth for SaaS: Build Without Burnout | Agile…",
-    "seoDescription": "Stop chasing growth at all costs. Learn how B2B SaaS founders build profitable, referral-driven businesses without operational chaos or employee burnout."
+    "seoDescription": "Grow profitably without chaos. Learn how referral-driven models scale service businesses sustainably while maintaining margins and team health."
   },
   {
     "id": "95Wos8EWNQsCdHenLmyRXW",
     "slug": "high-stakes-leadership-margin-for-error",
     "title": "High-Stakes Leadership: Essential Lessons When Error Is Thin",
     "contentType": "episode",
-    "primaryKeyword": "high-stakes leadership thin margin for error",
+    "primaryKeyword": "high-stakes leadership SaaS",
     "keywords": [
-      "high-stakes leadership thin margin for error",
-      "first-time CEO capital constraints",
-      "SaaS scaling with limited resources",
-      "B2B product leadership decision-making"
+      "high-stakes leadership SaaS",
+      "first-time CEO operational decisions",
+      "scaling with limited resources",
+      "capital-constrained product leadership"
     ],
-    "seoTitle": "High-Stakes Leadership When Margin for Error Is Thin | Margins &…",
-    "seoDescription": "Learn how first-time CEOs lead when resources are tight and every decision carries weight. Real strategies for scaling with imperfect information."
+    "seoTitle": "High-Stakes Leadership for SaaS CEOs | Margins & Mandates",
+    "seoDescription": "Learn how first-time CEOs balance speed, cash constraints, and product quality. Real lessons from Canvas GFX's CEO on leadership when error margins are thin."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp6vxc",
+    "slug": "home-care-software-saas-founder-journey",
+    "title": "Home Care Software: Powerful Lessons from a SaaS Founder",
+    "contentType": "episode",
+    "primaryKeyword": "vertical SaaS go-to-market strategy",
+    "keywords": [
+      "vertical SaaS go-to-market strategy",
+      "healthcare software scaling",
+      "SaaS founder regulatory markets",
+      "B2B SaaS positioning niche"
+    ],
+    "seoTitle": "Vertical SaaS GTM: Scaling Healthcare Software | Agile Operator",
+    "seoDescription": "Learn how to scale vertical SaaS in regulated markets. Ken Accardi shares home care software lessons on positioning, workflows, and operator execution."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMacNf7",
+    "slug": "dynamic-pricing-charter-aviation",
+    "title": "Flying the Business: Data, Dynamic Pricing, and the Future of Charter",
+    "contentType": "episode",
+    "primaryKeyword": "marketplace pricing strategy SaaS",
+    "keywords": [
+      "marketplace pricing strategy SaaS",
+      "dynamic pricing software implementation",
+      "asset-light platform model",
+      "B2B marketplace growth strategy",
+      "SaaS operator scaling playbook"
+    ],
+    "seoTitle": "Marketplace Pricing Strategy for SaaS Growth | Margins & Mandates",
+    "seoDescription": "Learn dynamic pricing and marketplace strategy from Linear Air's CEO. Discover how to scale asset-light platforms and capture intent-driven growth."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp6whm",
+    "slug": "bootstrapped-business-growth-inflection-point",
+    "title": "Bootstrapped Business Growth: Proven Lessons From a 12-Year CRO",
+    "contentType": "episode",
+    "primaryKeyword": "bootstrapped SaaS scaling",
+    "keywords": [
+      "bootstrapped SaaS scaling",
+      "founder-led sales to scalable revenue",
+      "B2B SaaS inflection point",
+      "go-to-market professionalization"
+    ],
+    "seoTitle": "Bootstrapped SaaS Scaling: From Founder-Led to Systems | Margins…",
+    "seoDescription": "How a bootstrapped B2B SaaS scaled without funding. Learn the hard inflection point: moving from founder-led sales to a real revenue engine."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxQEZ",
+    "slug": "healthcare-risk-compliance-censinet-ed-gaudet",
+    "title": "Healthcare Risk and Compliance: Critical Lessons from Censinet",
+    "contentType": "episode",
+    "primaryKeyword": "healthcare compliance SaaS strategy",
+    "keywords": [
+      "healthcare compliance SaaS strategy",
+      "vertical market strategy B2B SaaS",
+      "healthcare risk management platform",
+      "SaaS founder go-to-market healthcare"
+    ],
+    "seoTitle": "Healthcare Compliance SaaS Strategy | Margins & Mandates",
+    "seoDescription": "How Censinet's founder built a healthcare-first SaaS company. Learn zero-tolerance market strategy, capital raises, and customer-driven growth from $5M–$50M…"
   },
   {
     "id": "Vds5c8giQZ9VkfruMUW2mb",
@@ -52,41 +113,553 @@
     "primaryKeyword": "SaaS marketing budget allocation",
     "keywords": [
       "SaaS marketing budget allocation",
-      "brand vs demand generation",
+      "brand vs demand generation strategy",
       "B2B SaaS CAC efficiency",
-      "tech CEO marketing strategy"
+      "marketing spend ROI framework"
     ],
     "seoTitle": "SaaS Marketing Budget: Brand vs Demand | Agile Operator",
-    "seoDescription": "Resolve the CMO-CRO tension. Framework for balancing brand investment with pipeline growth without burning cash on inefficient demand."
+    "seoDescription": "Framework for allocating marketing spend between brand and demand. Resolve CMO/CRO tension. Optimize CAC and pipeline coverage."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp6yAO",
+    "slug": "marketing-leadership-in-private-equity-ai",
+    "title": "Marketing Leadership in Private Equity: The Real AI Shift",
+    "contentType": "episode",
+    "primaryKeyword": "marketing leadership PE-backed SaaS",
+    "keywords": [
+      "marketing leadership PE-backed SaaS",
+      "CMO private equity companies",
+      "sales marketing alignment SaaS",
+      "AI content strategy B2B",
+      "PE portfolio company growth"
+    ],
+    "seoTitle": "Marketing Leadership in PE SaaS | Agile Operator",
+    "seoDescription": "How CMOs drive growth in PE-backed SaaS. Align sales, fix positioning drift, and hit PE time horizons—with AI reshaping what works."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp6yWc",
+    "slug": "direct-mail-marketing-dennis-kelly",
+    "title": "Direct Mail Marketing: Dennis Kelly on Reinventing a $38B Channel",
+    "contentType": "episode",
+    "primaryKeyword": "direct mail marketing B2B SaaS",
+    "keywords": [
+      "direct mail marketing B2B SaaS",
+      "omnichannel marketing strategy",
+      "customer acquisition automation",
+      "direct mail ROI tracking"
+    ],
+    "seoTitle": "Direct Mail for B2B SaaS Growth | Agile Operator",
+    "seoDescription": "Cut through digital noise with direct mail automation. Learn how B2B SaaS operators improve engagement and response rates with integrated physical marketing."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMacU63",
+    "slug": "building-categories-brands-and-credibility-in-cybersecurity",
+    "title": "Building Categories, Brands, and Credibility in Cybersecurity with Mike O’Malley",
+    "contentType": "episode",
+    "primaryKeyword": "SaaS business model transformation",
+    "keywords": [
+      "SaaS business model transformation",
+      "go-to-market strategy cybersecurity",
+      "category creation B2B SaaS",
+      "scaling SaaS companies Boston"
+    ],
+    "seoTitle": "SaaS Business Model Transformation | Margins & Mandates",
+    "seoDescription": "Learn how to pivot from perpetual licenses to SaaS at scale. Mike O'Malley shares CyberArk's 6-quarter transformation playbook for B2B SaaS operators."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp6zSk",
+    "slug": "ai-hr-and-the-future-of-work-marketing-insights-from-pam-boiros",
+    "title": "AI, HR, and the Future of Work: Marketing Insights from Pam Boiros",
+    "contentType": "episode",
+    "primaryKeyword": "AI adoption for B2B SaaS growth",
+    "keywords": [
+      "AI adoption for B2B SaaS growth",
+      "fractional CMO AI strategy",
+      "HR tech marketing insights",
+      "AI-first marketing for SaaS leaders"
+    ],
+    "seoTitle": "AI Adoption for SaaS Growth | Margins & Mandates",
+    "seoDescription": "Learn how B2B SaaS leaders navigate AI disruption in recruitment, marketing, and team strategy from fractional CMO Pam Boiros."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp6zlY",
+    "slug": "from-legacy-to-lift-off-go-to-market-lessons-from-saas-cmo-steve-martin",
+    "title": "From Legacy to Lift-Off: Go-to-Market Lessons from SaaS CMO Steve Martin",
+    "contentType": "episode",
+    "primaryKeyword": "SaaS go-to-market strategy",
+    "keywords": [
+      "SaaS go-to-market strategy",
+      "scaling software companies",
+      "SaaS CMO insights",
+      "PE-backed growth",
+      "legacy product migration"
+    ],
+    "seoTitle": "SaaS Go-to-Market Strategy: Lessons from a CMO | Agile Operator",
+    "seoDescription": "Learn proven go-to-market strategies from a 20-year SaaS CMO. Navigate scaling challenges, PE dynamics, and AI's impact on marketing."
   },
   {
     "id": "drafts.hYkuWSRfJGMBZabsJkn82r",
     "slug": "margins-mandates-mayhem",
     "title": "Margins. Mandates. Mayhem:  Why Operators Need Agility—Not Just Answers",
     "contentType": "article",
-    "primaryKeyword": "operating under margin pressure",
+    "primaryKeyword": "operator margin pressure growth",
     "keywords": [
-      "operating under margin pressure",
-      "SaaS operator growth targets",
-      "stagility for B2B SaaS",
+      "operator margin pressure growth",
+      "SaaS operator agility under pressure",
+      "scaling revenue with cost cuts",
       "PE-backed SaaS operations"
     ],
-    "seoTitle": "Operating Under Margin Pressure | Agile Operator",
-    "seoDescription": "Cut costs 20%, grow 30%. Learn how SaaS operators navigate impossible mandates without sacrificing execution. Real strategies for margin + growth."
+    "seoTitle": "Operator Margin Pressure & Growth | Agile Operator",
+    "seoDescription": "Cut costs 20%, grow 30%. Learn how operators navigate margin pressure and growth mandates without burnout. Real strategies for the hot seat."
   },
   {
     "id": "hYkuWSRfJGMBZabsJkn82r",
     "slug": "margins-mandates-mayhem",
     "title": "Margins. Mandates. Mayhem:  Why Operators Need Agility—Not Just Answers",
     "contentType": "article",
-    "primaryKeyword": "SaaS operator margin pressure",
+    "primaryKeyword": "operational agility under pressure",
     "keywords": [
-      "SaaS operator margin pressure",
-      "growth target execution under constraints",
-      "B2B SaaS operational agility",
-      "PE-backed SaaS cost structure"
+      "operational agility under pressure",
+      "SaaS operator margin management",
+      "growth mandate execution",
+      "stagility framework"
     ],
-    "seoTitle": "SaaS Operator Margin Pressure: Real Agility | Agile Operator",
-    "seoDescription": "Cut costs 20%, grow 30%. Learn how operators execute under impossible mandates without breaking the business."
+    "seoTitle": "Operational Agility Under Pressure | Margins & Mandates",
+    "seoDescription": "Cut costs 20%, grow 30%. Learn how B2B SaaS operators execute when margins collapse and growth mandates don't. Real frameworks for impossible situations."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMacXH7",
+    "slug": "trust-teams-and-tough-markets-how-nate-burke-builds-a-marketing-engine",
+    "title": "Trust, Teams, and Tough Markets: How Nate Burke Builds a Marketing Engine",
+    "contentType": "episode",
+    "primaryKeyword": "building marketing team SaaS",
+    "keywords": [
+      "building marketing team SaaS",
+      "CMO hiring strategy B2B",
+      "AI cybersecurity marketing strategy",
+      "SaaS marketing organization structure"
+    ],
+    "seoTitle": "Building a Marketing Team for SaaS | Margins & Mandates",
+    "seoDescription": "Learn how to hire, structure, and scale a marketing organization in competitive markets. Nate Burke shares CMO insights for growth-stage SaaS operators."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxS8Z",
+    "slug": "human-data-ai-johan-abadies-blueprint-for-modern-demand-generation",
+    "title": "Human, Data, AI: Johan Abadie’s Blueprint for Modern Demand Generation",
+    "contentType": "episode",
+    "primaryKeyword": "demand generation strategy AI",
+    "keywords": [
+      "demand generation strategy AI",
+      "B2B SaaS pipeline building",
+      "human-in-the-loop marketing",
+      "data quality vs cheap data"
+    ],
+    "seoTitle": "Demand Generation Strategy in AI Era | Margins & Mandates",
+    "seoDescription": "Cut through AI hype. Learn why cheap data fails and how human-in-the-loop demand gen builds real pipeline for B2B SaaS operators."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxSNn",
+    "slug": "from-breach-to-brand-trust-jeff-nulsen-on-rebuilding-and-scaling-with-ai",
+    "title": "From Breach to Brand Trust: Jeff Nulsen on Rebuilding and Scaling with AI",
+    "contentType": "episode",
+    "primaryKeyword": "brand trust recovery B2B SaaS",
+    "keywords": [
+      "brand trust recovery B2B SaaS",
+      "rebuilding brand after security breach",
+      "B2B SaaS marketing after crisis",
+      "AI personalization demand generation"
+    ],
+    "seoTitle": "Brand Trust Recovery for SaaS CEOs | Agile Operator",
+    "seoDescription": "Learn how to rebuild brand trust after security crises and scale demand gen with AI. Real CMO insights from N-Able's turnaround."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxSZD",
+    "slug": "everyone-owns-pipeline-inside-nasunis-co-sell-culture",
+    "title": "Everyone Owns Pipeline: Inside Nasuni’s Co-Sell Culture",
+    "contentType": "episode",
+    "primaryKeyword": "channel-only go-to-market model",
+    "keywords": [
+      "channel-only go-to-market model",
+      "co-sell strategy B2B SaaS",
+      "partner marketing at scale",
+      "everyone owns pipeline culture"
+    ],
+    "seoTitle": "Channel-Only GTM at Scale | Margins & Mandates",
+    "seoDescription": "Learn how Nasuni scaled a channel-only go-to-market model in hypergrowth. Co-sell strategy, partner marketing, and \"everyone owns pipeline\" culture."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMacZpj",
+    "slug": "selling-data-to-doubters-michelle-katz-on-marketing-to-the-legal-world",
+    "title": "Selling Data to Doubters: Michelle Katz on Marketing to the Legal World",
+    "contentType": "episode",
+    "primaryKeyword": "selling to risk-averse industries",
+    "keywords": [
+      "selling to risk-averse industries",
+      "B2B SaaS sales strategy",
+      "data platform go-to-market",
+      "selling innovation to legacy markets"
+    ],
+    "seoTitle": "Selling to Risk-Averse Industries | Margins & Mandates",
+    "seoDescription": "How to sell data innovation to skeptical, traditional industries. Michelle Katz shares go-to-market lessons from disrupting legal recruiting."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp7202",
+    "slug": "new-age-in-demand-generation",
+    "title": "Demand Generation in the Age of Zero-Click Searches",
+    "contentType": "article",
+    "primaryKeyword": "demand generation AI disruption",
+    "keywords": [
+      "demand generation AI disruption",
+      "zero-click search strategy SaaS",
+      "generative engine optimization GEO",
+      "AI search impact B2B marketing"
+    ],
+    "seoTitle": "Demand Generation in the Age of Zero-Click Searches",
+    "seoDescription": "50% of Google searches now end without clicks. Learn how B2B SaaS operators can adapt demand generation strategies to AI-driven search and conversational AI."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMacc57",
+    "slug": "how-mature-is-your-marketing-engine",
+    "title": "Let’s Get Personal: How Mature is Your Marketing Engine?",
+    "contentType": "article",
+    "primaryKeyword": "inbound marketing maturity model",
+    "keywords": [
+      "inbound marketing maturity model",
+      "SaaS personalization strategy",
+      "demand generation framework",
+      "B2B SaaS marketing engine"
+    ],
+    "seoTitle": "Inbound Marketing Maturity Model | Agile Operator",
+    "seoDescription": "Build a scalable inbound marketing engine with our maturity model. Strategic personalization framework for B2B SaaS operators scaling $5M–$50M ARR."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMacdYR",
+    "slug": "consistency-in-leadership",
+    "title": "The Quiet Strength of Consistency in Leadership",
+    "contentType": "article",
+    "primaryKeyword": "leadership consistency in scaling",
+    "keywords": [
+      "leadership consistency in scaling",
+      "SaaS CEO trust building",
+      "team alignment during rapid growth",
+      "B2B SaaS leadership credibility"
+    ],
+    "seoTitle": "Leadership Consistency: Build Trust While Scaling | Agile…",
+    "seoDescription": "How consistent leadership builds trust during rapid growth. Keep your team aligned through change. Strategic insights for scaling SaaS CEOs."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMacfBN",
+    "slug": "6-steps-to-annual-business-planning",
+    "title": "A Roadmap for 2025 Annual Business Planning",
+    "contentType": "article",
+    "primaryKeyword": "annual business planning SaaS",
+    "keywords": [
+      "annual business planning SaaS",
+      "CEO budget planning process",
+      "SaaS OKR planning framework",
+      "board-approved business plan"
+    ],
+    "seoTitle": "Annual Business Planning for SaaS CEOs | Agile Operator",
+    "seoDescription": "6-step framework to build a board-approved budget & business plan without losing Q4 momentum. For growth-stage SaaS operators."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxVWs",
+    "slug": "managing-the-business-planning-cycle",
+    "title": "Mastering the Business Planning Cycle: A 12-Month Calendar",
+    "contentType": "article",
+    "primaryKeyword": "annual business planning cycle",
+    "keywords": [
+      "annual business planning cycle",
+      "SaaS quarterly planning process",
+      "executive strategy alignment",
+      "B2B SaaS business planning template"
+    ],
+    "seoTitle": "Annual Business Planning Cycle for SaaS CEOs | Agile Operator",
+    "seoDescription": "Master your 12-month planning cycle with quarterly reviews, strategic alignment, and disciplined execution—built for B2B SaaS operators."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp75JC",
+    "slug": "hyper-adaptive-leadership",
+    "title": "Fail Fast, Change Faster: How Hyper-Adaptive Leadership Turns Setbacks into Success",
+    "contentType": "article",
+    "primaryKeyword": "adaptive leadership SaaS",
+    "keywords": [
+      "adaptive leadership SaaS",
+      "SaaS CEO rapid pivoting",
+      "hyper-adaptive leadership strategy",
+      "B2B SaaS operator resilience"
+    ],
+    "seoTitle": "Adaptive Leadership for SaaS CEOs | Agile Operator",
+    "seoDescription": "Master hyper-adaptive leadership to turn setbacks into growth. Strategy for B2B SaaS operators managing investor pressure and rapid market change."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxVpu",
+    "slug": "from-service-to-saas-the-case-for-hiring-former-military-officers-in-tech",
+    "title": "From Service to SaaS:  The Case for Hiring Former Military Officers in Tech",
+    "contentType": "article",
+    "primaryKeyword": "hiring military officers tech leadership",
+    "keywords": [
+      "hiring military officers tech leadership",
+      "veteran talent acquisition SaaS",
+      "JMO leadership roles B2B SaaS",
+      "military veterans tech management"
+    ],
+    "seoTitle": "Hiring Military Officers for Tech Leadership | Agile Operator",
+    "seoDescription": "Why B2B SaaS companies hire former military officers for leadership roles. Unlock untapped talent with proven decision-making and team management skills."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxVvc",
+    "slug": "clarity-addressing-the-crisis-of-trust-in-organizations",
+    "title": "Clarity: Addressing the Crisis of Trust in Organizations",
+    "contentType": "article",
+    "primaryKeyword": "building trust in SaaS teams",
+    "keywords": [
+      "building trust in SaaS teams",
+      "leadership clarity organizational trust",
+      "SaaS team motivation retention",
+      "B2B tech leadership culture"
+    ],
+    "seoTitle": "Building Trust in SaaS Teams | Agile Operator",
+    "seoDescription": "Learn how SaaS leaders build organizational trust to boost collaboration, retention, and performance. Practical clarity strategies for growth-stage teams."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp75zw",
+    "slug": "transforming-professional-services-to-accelerate-customer-led-growth",
+    "title": "Transforming Professional Services to Accelerate Customer-Led Growth",
+    "contentType": "article",
+    "primaryKeyword": "professional services in SaaS growth",
+    "keywords": [
+      "professional services in SaaS growth",
+      "customer-led growth strategy",
+      "SaaS customer success evolution",
+      "B2B SaaS org structure"
+    ],
+    "seoTitle": "Professional Services & SaaS Growth | Agile Operator",
+    "seoDescription": "Align PS with customer-led growth. Learn how B2B SaaS leaders evolve professional services to drive retention and scale efficiently."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMacsyv",
+    "slug": "the-role-of-strategy-in-business-planning",
+    "title": "The Role of Strategy in Business Planning: Creating Value and Vision for the Future",
+    "contentType": "article",
+    "primaryKeyword": "strategic planning for SaaS growth",
+    "keywords": [
+      "strategic planning for SaaS growth",
+      "business strategy vs tactics",
+      "SaaS business plan template",
+      "growth stage strategy execution"
+    ],
+    "seoTitle": "Strategic Planning for SaaS Growth | Agile Operator",
+    "seoDescription": "Learn how to build a strategic plan that aligns with your business objectives. Strategy + tactics = growth for B2B SaaS operators."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp76Zq",
+    "slug": "why-leadership-adaptability-and-resilience-matter",
+    "title": "Unlocking SaaS Growth: Why Leadership Adaptability and Resilience Matter",
+    "contentType": "article",
+    "primaryKeyword": "SaaS leadership adaptability",
+    "keywords": [
+      "SaaS leadership adaptability",
+      "resilient leadership teams SaaS",
+      "scaling SaaS company culture",
+      "B2B SaaS executive strategy"
+    ],
+    "seoTitle": "SaaS Leadership Adaptability: Build Resilient Teams | Agile…",
+    "seoDescription": "Learn why SaaS leaders must adapt before market shifts force change. Build resilient teams that drive sustainable growth at scale."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxXAh",
+    "slug": "navigating-the-transition-with-a-growth-mindset",
+    "title": "From Founder to Future: Navigating the Transition with a Growth Mindset",
+    "contentType": "article",
+    "primaryKeyword": "scaling founder-led companies",
+    "keywords": [
+      "scaling founder-led companies",
+      "founder mentality vs growth mindset",
+      "SaaS founder transition to scaling",
+      "B2B SaaS organizational culture scaling"
+    ],
+    "seoTitle": "Scaling Founder-Led Companies: Growth Mindset Strategy | Agile…",
+    "seoDescription": "Learn how founder-led SaaS companies can maintain founder mentality while building a growth mindset culture. Strategic guidance for scaling without losing…"
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMactgB",
+    "slug": "customer-led-growth-vs-product-led-growth",
+    "title": "Customer Led Growth (CLG) and Product Led Growth (PLG): Friends or Foes?",
+    "contentType": "article",
+    "primaryKeyword": "customer led growth strategy",
+    "keywords": [
+      "customer led growth strategy",
+      "PLG vs CLG",
+      "SaaS retention and expansion",
+      "profitable SaaS growth"
+    ],
+    "seoTitle": "CLG vs PLG: Which Growth Strategy Wins | Agile Operator",
+    "seoDescription": "Should you pursue PLG or CLG? Learn how Customer Led Growth drives retention and profitability for SaaS operators scaling $5M–$50M ARR."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp77K0",
+    "slug": "the-future-of-customer-retention-leveraging-ai-for-predictive-churn-analytics",
+    "title": "The Future of Customer Retention: Leveraging AI for Predictive Churn Analytics",
+    "contentType": "article",
+    "primaryKeyword": "predictive churn analytics SaaS",
+    "keywords": [
+      "predictive churn analytics SaaS",
+      "customer health index implementation",
+      "AI-driven retention strategy",
+      "churn prediction models B2B"
+    ],
+    "seoTitle": "Predictive Churn Analytics for SaaS | Agile Operator",
+    "seoDescription": "Reduce churn with AI-powered predictive analytics. Build a Customer Health Index that identifies at-risk accounts before they leave."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxXml",
+    "slug": "technical-debt-and-the-impact-on-saas-growth",
+    "title": "Technical Debt and the Impact on SaaS Growth",
+    "contentType": "article",
+    "primaryKeyword": "technical debt SaaS growth",
+    "keywords": [
+      "technical debt SaaS growth",
+      "legacy system integration strategy",
+      "SaaS technical debt management",
+      "cloud migration for B2B SaaS"
+    ],
+    "seoTitle": "Technical Debt & SaaS Growth | Agile Operator",
+    "seoDescription": "How technical debt impacts SaaS scaling. Learn integration strategies to accelerate growth without legacy system overhaul."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMacx0r",
+    "slug": "cross-functional-teams-improving-collaboration-across-silos",
+    "title": "The Power of Cross Functional Teams in Overcoming Organizational Silos",
+    "contentType": "article",
+    "primaryKeyword": "breaking down organizational silos SaaS",
+    "keywords": [
+      "breaking down organizational silos SaaS",
+      "cross-functional teams B2B SaaS",
+      "organizational silos growth stage",
+      "SaaS operator team alignment"
+    ],
+    "seoTitle": "Break Organizational Silos in SaaS | Agile Operator",
+    "seoDescription": "Stop silos killing growth. Learn how cross-functional teams, clear OKRs, and leadership alignment fix broken communication in scaling SaaS companies."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp7ADW",
+    "slug": "how-to-optimize-saas-rd-spend",
+    "title": "How to Optimize SaaS Software Development Spend",
+    "contentType": "article",
+    "primaryKeyword": "SaaS R&D budget optimization",
+    "keywords": [
+      "SaaS R&D budget optimization",
+      "software development spend SaaS",
+      "R&D spending benchmarks",
+      "profitable efficient growth"
+    ],
+    "seoTitle": "SaaS R&D Budget Optimization | Agile Operator",
+    "seoDescription": "Optimize your R&D spend for profitable growth. Benchmarks, ROI frameworks, and actionable strategies for B2B SaaS operators managing $5M–$50M ARR."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMad0jZ",
+    "slug": "how-to-leverage-ai-and-llms-to-improve-sales-forecasting",
+    "title": "How to Leverage AI and LLMs to Improve SaaS Sales Forecasting",
+    "contentType": "article",
+    "primaryKeyword": "AI sales forecasting SaaS",
+    "keywords": [
+      "AI sales forecasting SaaS",
+      "SaaS sales prediction accuracy",
+      "LLM deal intelligence",
+      "forecast confidence B2B SaaS"
+    ],
+    "seoTitle": "AI Sales Forecasting for SaaS | Agile Operator",
+    "seoDescription": "Stop missing forecasts. Use AI and LLMs to identify deal risks, predict outcomes, and close more deals. Built for SaaS operators."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxYnZ",
+    "slug": "unlocking-the-power-of-high-performing-teams",
+    "title": "Achieving Peak Performance: How to Build High-Performing Teams",
+    "contentType": "article",
+    "primaryKeyword": "high-performing SaaS teams",
+    "keywords": [
+      "high-performing SaaS teams",
+      "organizational health for SaaS operators",
+      "SaaS executive team alignment",
+      "building winning culture B2B SaaS"
+    ],
+    "seoTitle": "High-Performing SaaS Teams: Build Alignment | Agile Operator",
+    "seoDescription": "Learn how SaaS operators build high-performing teams through organizational health, strategic hiring, and winning culture for sustained growth."
+  },
+  {
+    "id": "hYkuWSRfJGMBZabsJlxZFA",
+    "slug": "customer-segmentation-strategies-and-how-to-drive-engagement-through-personalization",
+    "title": "Segmentation Strategies and How to Drive Engagement Through Personalization",
+    "contentType": "article",
+    "primaryKeyword": "B2B SaaS customer segmentation strategy",
+    "keywords": [
+      "B2B SaaS customer segmentation strategy",
+      "SaaS personalization for growth",
+      "customer segmentation for B2B marketers",
+      "SaaS engagement tactics"
+    ],
+    "seoTitle": "B2B SaaS Segmentation & Personalization | Agile Operator",
+    "seoDescription": "Drive SaaS growth through smart customer segmentation and personalization. Strategies for B2B operators to increase engagement and conversions."
+  },
+  {
+    "id": "95Wos8EWNQsCdHenLp7COa",
+    "slug": "5-data-driven-techniques-to-improve-saas-customer-retention-in-2024",
+    "title": "How to Retain More SaaS Customers in 2024: 5 Key Data-Driven Methods Generative Ai",
+    "contentType": "article",
+    "primaryKeyword": "SaaS customer retention AI",
+    "keywords": [
+      "SaaS customer retention AI",
+      "churn prediction models",
+      "AI-driven CLTV optimization",
+      "B2B SaaS retention strategy"
+    ],
+    "seoTitle": "SaaS Customer Retention AI: 5 Data-Driven Methods | Agile…",
+    "seoDescription": "Cut churn with AI-powered forecasting and real-time analytics. 5 proven methods to boost CLTV without hiring more CSMs. For growth-stage SaaS leaders."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMad7FJ",
+    "slug": "customer-lifetime-value-cltv-a-primer",
+    "title": "Customer Lifetime Value (CLTV):  A Primer",
+    "contentType": "article",
+    "primaryKeyword": "SaaS customer lifetime value strategy",
+    "keywords": [
+      "SaaS customer lifetime value strategy",
+      "improve CLTV retention",
+      "B2B SaaS growth retention",
+      "reduce customer acquisition cost"
+    ],
+    "seoTitle": "SaaS Customer Lifetime Value Strategy | Agile Operator",
+    "seoDescription": "Master CLTV to drive sustainable SaaS growth. Learn retention strategies that cost 5-25x less than acquisition. Essential for B2B operators."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMad7i9",
+    "slug": "the-dark-funnel-shining-a-light-on-hidden-opportunities-2",
+    "title": "The Dark Funnel: Shining a Light on Hidden Opportunities",
+    "contentType": "article",
+    "primaryKeyword": "dark funnel B2B sales",
+    "keywords": [
+      "dark funnel B2B sales",
+      "B2B buyer journey mapping",
+      "intent data SaaS growth",
+      "early stage pipeline influence"
+    ],
+    "seoTitle": "Dark Funnel: Win B2B Deals Before Buyers Contact You",
+    "seoDescription": "70% of B2B buying happens invisibly. Learn how SaaS operators engage buyers earlier, influence decisions, and win deals before competitors."
+  },
+  {
+    "id": "Vds5c8giQZ9VkfruMad8sF",
+    "slug": "generative-ai-and-software-industry",
+    "title": "Generative AI and Software Industry",
+    "contentType": "article",
+    "primaryKeyword": "generative AI software development strategy",
+    "keywords": [
+      "generative AI software development strategy",
+      "AI-driven code generation for SaaS",
+      "engineering productivity generative AI",
+      "AI implementation roadmap B2B SaaS"
+    ],
+    "seoTitle": "Generative AI Strategy for SaaS Growth | Agile Operator",
+    "seoDescription": "How B2B SaaS operators leverage generative AI to accelerate development, reduce costs, and scale engineering teams. Strategic insights for growth-stage…"
   }
 ]
