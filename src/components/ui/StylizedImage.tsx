@@ -14,10 +14,7 @@ export function StylizedImage({ className, ...props }: StylizedImageProps) {
       <div className="relative overflow-hidden rounded-2xl">
         <Image
           {...props}
-          className={clsx(
-            'h-full w-full object-cover grayscale transition duration-500 motion-safe:hover:grayscale-0',
-            typeof props.className === 'string' ? props.className : '',
-          )}
+          className="h-full w-full object-cover grayscale transition duration-500 motion-safe:hover:grayscale-0"
         />
         {/* Overlay that fades out on hover */}
         <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-navy-900/10" />
