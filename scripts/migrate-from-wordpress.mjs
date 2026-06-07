@@ -552,12 +552,23 @@ async function migrate() {
           description: seoDescription,
           canonicalUrl: yoastCanonical,
           ...(keywords && { keywords }),
-          // openGraph.image must be a Sanity image reference — skip for now,
-          // generate-seo.mjs --write --all will set it from featuredImage
-          openGraph: {
-            title: seoTitle,
-            description: seoDescription,
-          },
+          // metaImage and openGraph.image must be Sanity image references (set after upload)
+          ...(featuredImage && {
+            metaImage: featuredImage,
+            openGraph: {
+              title: seoTitle,
+              description: seoDescription,
+              type: 'article',
+              image: featuredImage,
+            },
+          }),
+          ...(!featuredImage && {
+            openGraph: {
+              title: seoTitle,
+              description: seoDescription,
+              type: 'article',
+            },
+          }),
         },
       }
 

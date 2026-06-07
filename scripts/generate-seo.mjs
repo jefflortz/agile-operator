@@ -186,6 +186,11 @@ async function main() {
     }
     if (canonicalUrl) patch['seo.canonicalUrl'] = canonicalUrl
 
+    // OG type — always "article" for playbook content (articles + episodes)
+    if (!doc.seo?.openGraph?.type) {
+      patch['seo.openGraph.type'] = 'article'
+    }
+
     // Only set OG title/desc if not already set
     if (!doc.seo?.openGraph?.title) {
       patch['seo.openGraph.title'] = seoTitle
@@ -194,12 +199,18 @@ async function main() {
       patch['seo.openGraph.description'] = seoDescription
     }
 
-    // Link OG image to featuredImage if not already set
-    // Must be a Sanity image reference object, not a URL string
-    if (!doc.seo?.openGraph?.image && doc.featuredImage?.asset?._ref) {
-      patch['seo.openGraph.image'] = {
+    // Link both metaImage and OG image to featuredImage if not already set
+    // Both must be Sanity image reference objects, not URL strings
+    if (doc.featuredImage?.asset?._ref) {
+      const imageRef = {
         _type: 'image',
         asset: { _type: 'reference', _ref: doc.featuredImage.asset._ref },
+      }
+      if (!doc.seo?.metaImage) {
+        patch['seo.metaImage'] = imageRef
+      }
+      if (!doc.seo?.openGraph?.image) {
+        patch['seo.openGraph.image'] = imageRef
       }
     }
 
