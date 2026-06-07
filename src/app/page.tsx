@@ -6,6 +6,7 @@ import { Border } from '@/components/ui/Border'
 import { SectionIntro } from '@/components/ui/SectionIntro'
 import { Testimonial } from '@/components/ui/Testimonial'
 import { GridPattern } from '@/components/ui/GridPattern'
+import { StylizedImage } from '@/components/ui/StylizedImage'
 import ContentCard from '@/components/ui/ContentCard'
 import Button from '@/components/ui/Button'
 import { getLatestArticles, getLatestEpisodes, getServices } from '@/lib/queries'
@@ -74,6 +75,57 @@ function toCardProps(item: PlaybookContentPreview) {
   }
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://agile-operator.com/#organization',
+      name: 'Agile Operator LLC',
+      url: 'https://agile-operator.com',
+      logo: 'https://agile-operator.com/SVG/Agile%20Operator-01.svg',
+      sameAs: [
+        'https://www.linkedin.com/company/the-agile-operator/',
+        'https://x.com/theagileoperator',
+        'https://open.spotify.com/show/0JbihvBwMqoXr8EdEyWSOu',
+      ],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '75 State St',
+        addressLocality: 'Boston',
+        addressRegion: 'MA',
+        postalCode: '02109',
+        addressCountry: 'US',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: 'jeff@agile-operator.com',
+        contactType: 'customer service',
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://agile-operator.com/#jeff-lortz',
+      name: 'Jeff Lortz',
+      jobTitle: 'Founder & Principal Advisor',
+      worksFor: { '@id': 'https://agile-operator.com/#organization' },
+      url: 'https://agile-operator.com/about',
+      sameAs: [
+        'https://www.linkedin.com/company/the-agile-operator/',
+      ],
+      description:
+        'Jeff Lortz brings over two decades of executive leadership in Enterprise SaaS, Private Equity, and Digital Transformation. Founder of Agile Operator LLC.',
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://agile-operator.com/#website',
+      url: 'https://agile-operator.com',
+      name: 'Agile Operator',
+      publisher: { '@id': 'https://agile-operator.com/#organization' },
+    },
+  ],
+}
+
 export default async function Home() {
   const [articles, episodes, sanityServices] = await Promise.all([
     getLatestArticles(3),
@@ -84,6 +136,11 @@ export default async function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero */}
       <div className="relative isolate overflow-hidden pt-14">
         <GridPattern
@@ -91,7 +148,7 @@ export default async function Home() {
           yOffset={-96}
           interactive
         />
-        <Container className="pb-24 pt-20 sm:pb-32 sm:pt-32 md:pt-40">
+<Container className="pb-24 pt-20 sm:pb-32 sm:pt-32 md:pt-40">
           <FadeIn className="max-w-3xl">
             <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-4">
               Strategic Growth Advisory
@@ -123,9 +180,12 @@ export default async function Home() {
         <Container className="mt-16">
           <FadeInStagger>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-              {services.map((service) => (
+              {services.map((service, index) => (
                 <FadeIn key={service._id}>
                   <Border className="pt-8">
+                    <p className="font-display text-6xl font-medium text-navy-900 opacity-[0.06] leading-none mb-3 select-none" aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </p>
                     <h3 className="font-display text-2xl font-semibold text-navy-900">
                       {service.title}
                     </h3>
@@ -144,8 +204,12 @@ export default async function Home() {
       </div>
 
       {/* Collective Edge callout */}
-      <div className="mt-24 sm:mt-32 lg:mt-40 bg-navy-900 py-24 sm:py-32">
-        <Container>
+      <div className="relative mt-24 sm:mt-32 lg:mt-40 bg-navy-900 py-24 sm:py-32 overflow-hidden">
+        <GridPattern
+          className="absolute inset-0 h-full w-full fill-white/[0.025] stroke-white/[0.05] mask-[linear-gradient(to_bottom_left,white_30%,transparent_70%)]"
+          yOffset={0}
+        />
+        <Container className="relative">
           <FadeIn>
             <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-400 mb-4">
               Collective Edge — CEO Council
@@ -275,13 +339,12 @@ export default async function Home() {
         <Container>
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
             <FadeIn>
-              <div className="relative max-w-sm mx-auto lg:mx-0">
-                <Image
+              <div className="relative max-w-sm mx-auto lg:mx-0 p-4">
+                <StylizedImage
                   src="/Headshots/0L9A6094 (1).png"
                   alt="Jeff Lortz"
                   width={480}
                   height={560}
-                  className="rounded-2xl object-cover grayscale hover:grayscale-0 transition duration-500"
                 />
               </div>
             </FadeIn>
@@ -295,9 +358,11 @@ export default async function Home() {
               <p className="mt-6 text-lg text-gray-600">
                 Jeff Lortz brings over two decades of executive leadership in Enterprise SaaS, Private Equity, and Digital Transformation. As a former CEO and C-suite operator, he&apos;s led companies through scaling, strategic transition, and investor-backed growth.
               </p>
-              <p className="mt-4 text-lg text-gray-600">
-                &ldquo;We&apos;re not consultants — we&apos;re operators with the scars, the playbooks, and the clarity to help your teams level up fast.&rdquo;
-              </p>
+              <blockquote className="mt-6 border-l-2 border-gold-500 pl-5">
+                <p className="text-lg text-gray-500 italic leading-relaxed">
+                  &ldquo;We&apos;re not consultants — we&apos;re operators with the scars, the playbooks, and the clarity to help your teams level up fast.&rdquo;
+                </p>
+              </blockquote>
               <div className="mt-8">
                 <Button href="/about" variant="outline">Meet Jeff</Button>
               </div>
@@ -310,6 +375,14 @@ export default async function Home() {
       <div className="mt-24 sm:mt-32 lg:mt-40 bg-navy-50 py-24 sm:py-32">
         <Container>
           <FadeIn className="text-center">
+            <Image
+              src="/SVG/Agile Operator-03.svg"
+              alt=""
+              width={56}
+              height={56}
+              className="mx-auto mb-6 opacity-20 pointer-events-none select-none"
+              aria-hidden="true"
+            />
             <h2 className="font-display text-3xl font-medium tracking-tight text-navy-900 sm:text-4xl">
               Ready to transform your business?
             </h2>

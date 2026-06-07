@@ -155,7 +155,7 @@ export default async function PlaybooksPage({
               <FadeInStagger className="mt-8">
                 {/* Episodes: single column (horizontal card reads better full-width) */}
                 {/* Articles / All: two-column grid */}
-                <div className={filter === 'episode' ? 'flex flex-col' : 'grid grid-cols-1 sm:grid-cols-2 gap-x-8 items-stretch'}>
+                <div className={filter === 'episode' ? 'flex flex-col gap-6' : 'grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch'}>
                   {items.map((item) => (
                     <FadeIn key={item._id}>
                       <ContentCard {...toCardProps(item)} />

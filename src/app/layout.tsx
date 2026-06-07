@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 import './globals.css'
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,6 +21,12 @@ export const metadata: Metadata = {
   description:
     'Strategic growth advisory for ambitious operators. Agile Operator provides proven playbooks and frameworks to balance margins and mandates.',
   metadataBase: new URL('https://agile-operator.com'),
+  icons: {
+    icon: [
+      { url: '/SVG/Agile Operator-03.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/SVG/Agile Operator-03.svg',
+  },
   openGraph: {
     siteName: 'Agile Operator',
     type: 'website',
@@ -37,6 +46,22 @@ export default function RootLayout({
           <Footer />
         </Nav>
       </body>
+      {GA_ID && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
+            `}
+          </Script>
+        </>
+      )}
     </html>
   )
 }
