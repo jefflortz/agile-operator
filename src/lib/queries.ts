@@ -1,6 +1,9 @@
 import { client } from './sanity'
 import type { PlaybookContentPreview, PlaybookContent, Service, MarginsAndMandates } from './types'
 
+// Exclude Sanity draft documents (ids starting with "drafts.")
+const PUBLISHED = `!(_id in path("drafts.**"))`
+
 // Shared projection for card previews
 const previewProjection = `
   _id,
@@ -20,7 +23,7 @@ const previewProjection = `
 // Latest mixed content (articles + episodes) for homepage
 export async function getLatestContent(limit = 5): Promise<PlaybookContentPreview[]> {
   return client.fetch(
-    `*[_type == "playbookContent"] | order(publishedAt desc) [0...$limit] {
+    `*[_type == "playbookContent" && ${PUBLISHED}] | order(publishedAt desc) [0...$limit] {
       ${previewProjection}
     }`,
     { limit }
@@ -30,7 +33,7 @@ export async function getLatestContent(limit = 5): Promise<PlaybookContentPrevie
 // Articles only
 export async function getLatestArticles(limit = 6): Promise<PlaybookContentPreview[]> {
   return client.fetch(
-    `*[_type == "playbookContent" && contentType == "article"] | order(publishedAt desc) [0...$limit] {
+    `*[_type == "playbookContent" && ${PUBLISHED} && contentType == "article"] | order(publishedAt desc) [0...$limit] {
       ${previewProjection}
     }`,
     { limit }
@@ -40,7 +43,7 @@ export async function getLatestArticles(limit = 6): Promise<PlaybookContentPrevi
 // Episodes only
 export async function getLatestEpisodes(limit = 5): Promise<PlaybookContentPreview[]> {
   return client.fetch(
-    `*[_type == "playbookContent" && contentType == "episode"] | order(publishedAt desc) [0...$limit] {
+    `*[_type == "playbookContent" && ${PUBLISHED} && contentType == "episode"] | order(publishedAt desc) [0...$limit] {
       ${previewProjection}
     }`,
     { limit }
@@ -56,6 +59,7 @@ export async function getAllContent(
 ): Promise<{ items: PlaybookContentPreview[]; total: number }> {
   const filters = [
     `_type == "playbookContent"`,
+    PUBLISHED,
     contentType ? `contentType == "${contentType}"` : null,
     categorySlug ? `"${categorySlug}" in categories[]->slug.current` : null,
   ].filter(Boolean).join(' && ')
@@ -88,7 +92,7 @@ export async function getContentMetadata(slug: string): Promise<{
   }
 } | null> {
   return client.fetch(
-    `*[_type == "playbookContent" && slug.current == $slug][0] {
+    `*[_type == "playbookContent" && ${PUBLISHED} && slug.current == $slug][0] {
       title, excerpt, publishedAt, featuredImage, seo
     }`,
     { slug }
@@ -98,7 +102,7 @@ export async function getContentMetadata(slug: string): Promise<{
 // All slugs for sitemap
 export async function getAllSlugs(): Promise<string[]> {
   const docs = await client.fetch(
-    `*[_type == "playbookContent" && defined(slug.current)] { "slug": slug.current }`
+    `*[_type == "playbookContent" && ${PUBLISHED} && defined(slug.current)] { "slug": slug.current }`
   )
   return docs.map((d: { slug: string }) => d.slug)
 }
@@ -106,7 +110,7 @@ export async function getAllSlugs(): Promise<string[]> {
 // Single content item by slug
 export async function getContentBySlug(slug: string): Promise<PlaybookContent | null> {
   return client.fetch(
-    `*[_type == "playbookContent" && slug.current == $slug][0] {
+    `*[_type == "playbookContent" && ${PUBLISHED} && slug.current == $slug][0] {
       ...,
       "slug": slug.current,
       "categories": categories[]->{_id, title, "slug": slug.current},
@@ -119,10 +123,10 @@ export async function getContentBySlug(slug: string): Promise<PlaybookContent | 
 // Categories that have at least one article, with counts
 export async function getActiveCategories(): Promise<{ title: string; slug: string; total: number }[]> {
   return client.fetch(
-    `*[_type == "category" && count(*[_type == "playbookContent" && references(^._id)]) > 0] {
+    `*[_type == "category" && count(*[_type == "playbookContent" && ${PUBLISHED} && references(^._id)]) > 0] {
       title,
       "slug": slug.current,
-      "total": count(*[_type == "playbookContent" && references(^._id)])
+      "total": count(*[_type == "playbookContent" && ${PUBLISHED} && references(^._id)])
     } | order(total desc)`
   )
 }
@@ -136,7 +140,7 @@ export async function getRelatedContent(
   if (!categoryIds.length) return []
   const firstCategoryId = categoryIds[0]
   return client.fetch(
-    `*[_type == "playbookContent" && slug.current != $excludeSlug && references($firstCategoryId)] | order(publishedAt desc) [0...${limit}] {
+    `*[_type == "playbookContent" && ${PUBLISHED} && slug.current != $excludeSlug && references($firstCategoryId)] | order(publishedAt desc) [0...${limit}] {
       ${previewProjection}
     }`,
     { firstCategoryId, excludeSlug }
