@@ -107,15 +107,15 @@ Generate the following JSON (no other text, just the JSON object):
 {
   "primaryKeyword": "one specific 2–5 word phrase that a CEO would actually search (not too broad)",
   "keywords": ["primaryKeyword", "secondaryKeyword2", "secondaryKeyword3", "secondaryKeyword4"],
-  "seoTitle": "optimized title, 50–60 chars, includes primary keyword naturally, ends with | ${SITE_NAME} or | Margins & Mandates for episodes",
-  "seoDescription": "compelling meta description, 140–155 chars, includes primary keyword, addresses the reader's pain point directly"
+  "seoTitle": "optimized title, MUST be 50–59 chars total (plugin flags anything 60+), includes primary keyword, ends with | ${SITE_NAME} or | Margins & Mandates for episodes",
+  "seoDescription": "compelling meta description, MUST be 120–158 chars total, includes primary keyword, addresses the reader's pain point directly"
 }
 
 Rules:
 - Keywords should be specific, not generic (e.g. "SaaS executive transition" not "leadership")
 - Include at least one location-relevant keyword where natural (Boston, B2B SaaS, tech CEO)
-- seoTitle must be under 65 characters total
-- seoDescription must be under 160 characters total
+- seoTitle MUST be 59 characters or fewer — count carefully
+- seoDescription MUST be at least 120 characters and no more than 158
 - Write for someone actively searching for help with this exact problem`
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -147,8 +147,13 @@ Rules:
   const result = JSON.parse(jsonMatch[0])
 
   // Enforce length limits as a safety net
-  result.seoTitle       = truncate(result.seoTitle, 65)
+  result.seoTitle       = truncate(result.seoTitle, 59)
   result.seoDescription = truncate(result.seoDescription, 158)
+  // Enforce minimum description length — pad with a fallback sentence if AI came up short
+  if (result.seoDescription.length < 120) {
+    const suffix = ` Strategic growth advisory for technology CEOs and B2B SaaS operators.`
+    result.seoDescription = truncate((result.seoDescription + suffix).replace(/\s+/g, ' '), 158)
+  }
   if (!Array.isArray(result.keywords)) result.keywords = [result.primaryKeyword]
 
   return result
@@ -206,9 +211,9 @@ async function main() {
 
       if (!DRY_RUN) {
         await sanity.patch(doc._id).set({
-          'seo.keywords':       seo.keywords,
-          'seo.seoTitle':       seo.seoTitle,
-          'seo.seoDescription': seo.seoDescription,
+          'seo.keywords':     seo.keywords,
+          'seo.title':        seo.seoTitle,
+          'seo.description':  seo.seoDescription,
         }).commit()
       }
 

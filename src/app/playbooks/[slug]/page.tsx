@@ -24,8 +24,8 @@ export async function generateMetadata({
   const doc = await getContentMetadata(slug)
   if (!doc) return {}
 
-  const seoTitle = doc.seo?.seoTitle || `${doc.title} | Agile Operator`
-  const seoDescription = doc.seo?.seoDescription || doc.excerpt || ''
+  const seoTitle = doc.seo?.title || `${doc.title} | Agile Operator`
+  const seoDescription = doc.seo?.description || doc.excerpt || ''
   const canonical = doc.seo?.canonicalUrl || `https://agile-operator.com/playbooks/${slug}`
   const keywords = doc.seo?.keywords?.join(', ') || undefined
 

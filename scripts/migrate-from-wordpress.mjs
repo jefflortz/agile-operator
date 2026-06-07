@@ -398,7 +398,7 @@ Rules:
   if (!jsonMatch) throw new Error(`No JSON in response`)
 
   const result = JSON.parse(jsonMatch[0])
-  result.seoTitle       = truncate(result.seoTitle, 65)
+  result.seoTitle       = truncate(result.seoTitle, 59)
   result.seoDescription = truncate(result.seoDescription, 158)
   if (!Array.isArray(result.keywords)) result.keywords = [result.primaryKeyword]
 
@@ -502,7 +502,7 @@ async function migrate() {
       const yoastCanonical = yoast.canonical || `${SITE_URL}/playbooks/${slug}`
 
       // Build base SEO from Yoast data
-      let seoTitle       = yoastSeoTitle ? truncate(yoastSeoTitle, 65) : truncate(`${postTitle} | ${SITE_NAME}`, 65)
+      let seoTitle       = yoastSeoTitle ? truncate(yoastSeoTitle, 59) : truncate(`${postTitle} | ${SITE_NAME}`, 59)
       let seoDescription = yoastSeoDesc  ? truncate(yoastSeoDesc, 158) : truncate(excerpt, 158)
       let keywords       = null // will fill from AI or leave null
 
@@ -548,17 +548,16 @@ async function migrate() {
         ...(contentType === 'episode' && podcastUrl     && { podcastUrl }),
         ...(contentType === 'episode' && podcastDuration && { podcastDuration }),
         seo: {
-          seoTitle,
-          seoDescription,
+          title: seoTitle,
+          description: seoDescription,
           canonicalUrl: yoastCanonical,
           ...(keywords && { keywords }),
-          ...(yoastOgImage && {
-            openGraph: {
-              title: seoTitle,
-              description: seoDescription,
-              image: yoastOgImage,
-            }
-          }),
+          // openGraph.image must be a Sanity image reference — skip for now,
+          // generate-seo.mjs --write --all will set it from featuredImage
+          openGraph: {
+            title: seoTitle,
+            description: seoDescription,
+          },
         },
       }
 

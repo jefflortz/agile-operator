@@ -80,8 +80,8 @@ export async function getContentMetadata(slug: string): Promise<{
   publishedAt?: string
   featuredImage?: { asset: { _ref: string }; alt?: string }
   seo?: {
-    seoTitle?: string
-    seoDescription?: string
+    title?: string
+    description?: string
     keywords?: string[]
     canonicalUrl?: string
     openGraph?: { title?: string; description?: string; image?: string }

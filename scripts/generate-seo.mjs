@@ -13,14 +13,22 @@
 
 import { createClient } from '@sanity/client'
 import { readFileSync } from 'fs'
-import { resolve } from 'path'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
 
-// Load .env.local manually (dotenv not installed as a dep)
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+// Load .env.local from project root
 try {
-  const envFile = readFileSync(resolve(process.cwd(), '.env.local'), 'utf8')
-  for (const line of envFile.split('\n')) {
-    const match = line.match(/^([^#=\s]+)\s*=\s*(.*)$/)
-    if (match) process.env[match[1]] ??= match[2].replace(/^['"]|['"]$/g, '')
+  const envFile = readFileSync(resolve(__dirname, '../.env.local'), 'utf8')
+  for (const rawLine of envFile.split('\n')) {
+    const line = rawLine.trim()
+    if (!line || line.startsWith('#')) continue
+    const eqIdx = line.indexOf('=')
+    if (eqIdx === -1) continue
+    const key = line.slice(0, eqIdx).trim()
+    const val = line.slice(eqIdx + 1).trim().replace(/^['"]|['"]$/g, '')
+    if (key && val) process.env[key] = val
   }
 } catch { /* .env.local not found — rely on existing env */ }
 
@@ -58,7 +66,7 @@ function bodyToText(body) {
     .trim()
 }
 
-/** Build SEO title — 50–60 chars is the sweet spot */
+/** Build SEO title — target 50–59 chars (plugin flags ≥60) */
 function buildSeoTitle(doc) {
   const brand = 'Agile Operator'
   const base = doc.contentType === 'episode'
@@ -68,28 +76,38 @@ function buildSeoTitle(doc) {
     : doc.title
 
   const candidate = `${base} | ${brand}`
-  // If too long, drop the guest title suffix and just use the episode title
-  if (candidate.length > 65 && doc.contentType === 'episode' && doc.guestName) {
-    return truncate(`${doc.title} | Margins & Mandates`, 65)
+  // If too long, drop the guest suffix and use short brand
+  if (candidate.length > 59 && doc.contentType === 'episode' && doc.guestName) {
+    return truncate(`${doc.title} | Margins & Mandates`, 59)
   }
-  return truncate(candidate, 65)
+  return truncate(candidate, 59)
 }
 
-/** Build meta description — 140–160 chars */
+/** Build meta description — must be 120–158 chars */
 function buildSeoDescription(doc) {
-  // Prefer excerpt (already editorial-quality), then fall back to body text
-  const source = doc.excerpt
-    ?? bodyToText(doc.body)
-    ?? bodyToText(doc.showNotes)
-    ?? ''
+  const MIN = 120
+  const MAX = 158
 
-  if (!source) {
+  // Build from best available source: excerpt → body → show notes
+  const excerpt   = doc.excerpt ? doc.excerpt.trim() : ''
+  const bodyText  = bodyToText(doc.body)
+  const notesText = bodyToText(doc.showNotes)
+
+  // Combine sources until we have enough
+  let combined = excerpt
+  if (combined.length < MIN && bodyText)  combined = `${combined} ${bodyText}`.trim()
+  if (combined.length < MIN && notesText) combined = `${combined} ${notesText}`.trim()
+  combined = combined.replace(/\s+/g, ' ').trim()
+
+  if (!combined || combined.length < 20) {
+    // Absolute fallback
     return doc.contentType === 'episode'
-      ? `Listen to this episode of Margins & Mandates hosted by Jeff Lortz.`
-      : `Read this article from Agile Operator — strategic growth advisory for technology CEOs.`
+      ? `Listen to this episode of Margins & Mandates with Jeff Lortz — strategic growth advisory for technology CEOs and B2B SaaS operators.`
+      : `Read this article from Agile Operator — strategic growth advisory for technology CEOs and B2B SaaS operators navigating growth.`
   }
 
-  return truncate(source, 155)
+  if (combined.length <= MAX) return combined
+  return truncate(combined, MAX)
 }
 
 /** Build canonical URL */
@@ -113,7 +131,7 @@ function buildOpenGraph(doc, seoTitle, seoDescription) {
 function needsSeo(doc) {
   if (OVERWRITE_ALL) return true
   const seo = doc.seo ?? {}
-  return !seo.seoTitle || !seo.seoDescription
+  return !seo.title || !seo.description
 }
 
 // ── Main ───────────────────────────────────────────────────────────────────
@@ -163,8 +181,8 @@ async function main() {
     }
 
     const patch = {
-      'seo.seoTitle': seoTitle,
-      'seo.seoDescription': seoDescription,
+      'seo.title': seoTitle,
+      'seo.description': seoDescription,
     }
     if (canonicalUrl) patch['seo.canonicalUrl'] = canonicalUrl
 
@@ -177,20 +195,18 @@ async function main() {
     }
 
     // Link OG image to featuredImage if not already set
+    // Must be a Sanity image reference object, not a URL string
     if (!doc.seo?.openGraph?.image && doc.featuredImage?.asset?._ref) {
-      const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? 'r51dmz2x'
-      const dataset   = process.env.NEXT_PUBLIC_SANITY_DATASET   ?? 'production'
-      // Convert asset ref (image-{id}-{w}x{h}-{ext}) to CDN URL at 1200×630
-      const ref = doc.featuredImage.asset._ref
-      const [, id, dims, fmt] = ref.split('-')
-      const ogImageUrl = `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}-${dims}.${fmt}?w=1200&h=630&fit=crop&auto=format`
-      patch['seo.openGraph.image'] = ogImageUrl
+      patch['seo.openGraph.image'] = {
+        _type: 'image',
+        asset: { _type: 'reference', _ref: doc.featuredImage.asset._ref },
+      }
     }
 
     console.log(`${DRY_RUN ? '[DRY RUN] Would update' : 'Updating'}: "${doc.title}"`)
-    console.log(`  seoTitle:       ${seoTitle}`)
-    console.log(`  seoDescription: ${seoDescription}`)
-    if (canonicalUrl) console.log(`  canonicalUrl:   ${canonicalUrl}`)
+    console.log(`  title:       ${seoTitle}`)
+    console.log(`  description: ${seoDescription}`)
+    if (canonicalUrl) console.log(`  canonicalUrl: ${canonicalUrl}`)
     console.log()
 
     if (!DRY_RUN) {

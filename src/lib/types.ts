@@ -42,8 +42,13 @@ export type PlaybookContent = {
   applePodcastUrl?: string
   podcastDuration?: string
   showNotes?: unknown[]
-  seoTitle?: string
-  seoDescription?: string
+  seo?: {
+    title?: string
+    description?: string
+    keywords?: string[]
+    canonicalUrl?: string
+    openGraph?: { title?: string; description?: string; image?: unknown }
+  }
 }
 
 export type PlaybookContentPreview = Pick<
