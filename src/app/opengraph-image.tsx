@@ -12,143 +12,87 @@ export default function OGImage() {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'flex-end',
+          alignItems: 'center',
+          justifyContent: 'center',
           width: '1200px',
           height: '630px',
           backgroundColor: '#02155B',
-          padding: '72px 80px',
-          fontFamily: 'Georgia, serif',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        {/* Subtle grid lines — top-right decorative */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          width: '480px',
-          height: '480px',
-          opacity: 0.06,
-          display: 'flex',
-        }}>
-          {[0,1,2,3,4,5].map((i) => (
-            <div key={i} style={{
-              position: 'absolute',
-              top: 0,
-              left: `${i * 80}px`,
-              width: '1px',
-              height: '480px',
-              backgroundColor: 'white',
-            }} />
-          ))}
-          {[0,1,2,3,4,5].map((i) => (
-            <div key={i} style={{
-              position: 'absolute',
-              left: 0,
-              top: `${i * 80}px`,
-              width: '480px',
-              height: '1px',
-              backgroundColor: 'white',
-            }} />
-          ))}
-        </div>
+        {/* Gold top + bottom rules */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '1200px', height: '3px', backgroundColor: '#B87D2A', display: 'flex' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '1200px', height: '3px', backgroundColor: '#B87D2A', display: 'flex' }} />
 
-        {/* Gold top rule */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '1200px',
-          height: '3px',
-          backgroundColor: '#B87D2A',
-        }} />
+        {/* AO mark — -04.svg: white paths on #02155B bg, navy rect disappears into OG bg */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://agile-operator.com/SVG/Agile%20Operator-04.svg"
+          width={280}
+          height={280}
+          style={{ opacity: 0.22 }}
+          alt=""
+        />
 
-        {/* AO monogram — top left */}
+        {/* Wordmark */}
         <div style={{
-          position: 'absolute',
-          top: '56px',
-          left: '80px',
+          marginTop: '28px',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
-          gap: '16px',
+          gap: '0px',
         }}>
-          {/* Circle mark placeholder using text */}
-          <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            border: '1.5px solid rgba(255,255,255,0.4)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-            <div style={{
-              width: '1.5px',
-              height: '28px',
-              backgroundColor: 'rgba(255,255,255,0.5)',
-            }} />
-          </div>
-          <span style={{
-            fontSize: '11px',
+          <p style={{
+            fontSize: '15px',
             fontFamily: 'sans-serif',
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: '#B87D2A',
             fontWeight: 600,
+            letterSpacing: '0.2em',
+            color: '#B87D2A',
+            margin: '0 0 16px',
+            textTransform: 'uppercase',
+            display: 'flex',
           }}>
             AGILE OPERATOR
-          </span>
-        </div>
+          </p>
 
-        {/* Main content */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}>
-          {/* Gold accent line */}
-          <div style={{
-            width: '48px',
-            height: '2px',
-            backgroundColor: '#B87D2A',
-            marginBottom: '28px',
-            opacity: 0.8,
-          }} />
-
-          <div style={{
-            fontSize: '58px',
+          <p style={{
+            fontSize: '42px',
+            fontFamily: 'Georgia, serif',
             fontWeight: 500,
             color: 'white',
-            lineHeight: 1.1,
-            letterSpacing: '-0.02em',
-            marginBottom: '28px',
-            maxWidth: '820px',
+            margin: '0',
+            letterSpacing: '-0.5px',
+            display: 'flex',
           }}>
-            Scale smarter.<br />Lead with clarity.
-          </div>
+            Scale smarter. Lead with clarity.
+          </p>
 
-          <div style={{
-            fontSize: '22px',
-            color: 'rgba(255,255,255,0.55)',
+          <p style={{
+            fontSize: '20px',
             fontFamily: 'sans-serif',
             fontWeight: 400,
-            letterSpacing: '0.01em',
-            lineHeight: 1.5,
-            maxWidth: '640px',
+            color: 'rgba(255,255,255,0.45)',
+            margin: '14px 0 0',
+            display: 'flex',
           }}>
-            Strategic growth advisory for technology CEOs<br />navigating $5M–$50M ARR.
-          </div>
+            Strategic growth advisory for technology CEOs · Boston
+          </p>
         </div>
 
-        {/* Bottom right — URL */}
-        <div style={{
+        {/* URL — bottom right */}
+        <p style={{
           position: 'absolute',
-          bottom: '44px',
-          right: '80px',
-          fontSize: '14px',
+          bottom: '24px',
+          right: '48px',
+          fontSize: '13px',
           fontFamily: 'sans-serif',
-          color: 'rgba(255,255,255,0.3)',
-          letterSpacing: '0.06em',
+          color: 'rgba(255,255,255,0.2)',
+          margin: '0',
+          display: 'flex',
         }}>
           agile-operator.com
-        </div>
+        </p>
       </div>
     ),
     { ...size }
