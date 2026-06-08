@@ -76,7 +76,7 @@ export default function OGImage() {
             margin: '14px 0 0',
             display: 'flex',
           }}>
-            Strategic advisory for growth-stage leaders · Boston
+            Strategic advisory for growth-stage leaders
           </p>
         </div>
 
