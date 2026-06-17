@@ -14,6 +14,18 @@ export const metadata: Metadata = {
   title: 'Margins & Mandates | Agile Operator',
   description:
     'Conversations with CEOs and operators about the plays, pivots, and pressure-tested leadership that define their companies. Hosted by Jeff Lortz.',
+  alternates: {
+    canonical: 'https://www.agile-operator.com/margins-and-mandates',
+    types: {
+      'application/rss+xml': 'https://www.agile-operator.com/feed/podcast',
+    },
+  },
+  openGraph: {
+    title: 'Margins & Mandates | Agile Operator',
+    description: 'Conversations with CEOs and operators about the plays, pivots, and pressure-tested leadership that define their companies. Hosted by Jeff Lortz.',
+    url: 'https://www.agile-operator.com/margins-and-mandates',
+    type: 'website',
+  },
 }
 
 // Fallback platform links when Sanity doc isn't populated yet
@@ -110,8 +122,36 @@ export default async function MarginsAndMandatesPage() {
     ? urlFor(showData.coverImage).width(400).height(400).url()
     : null
 
+  const podcastJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'PodcastSeries',
+    name: 'Margins & Mandates',
+    description,
+    url: 'https://www.agile-operator.com/margins-and-mandates',
+    image: coverImageUrl ?? 'https://www.agile-operator.com/Margin and Mandates/Margins and Mandates Logo[58] (1).jpg',
+    author: {
+      '@type': 'Person',
+      name: 'Jeff Lortz',
+      url: 'https://www.agile-operator.com/#jeff-lortz',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Agile Operator',
+      url: 'https://www.agile-operator.com',
+    },
+    sameAs: [
+      spotifyUrl,
+      youtubeUrl,
+    ],
+    inLanguage: 'en-US',
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(podcastJsonLd) }}
+      />
       {/* Hero — dark, full-bleed, nav inverts to white */}
       <div className="-mt-[92px] relative isolate overflow-hidden bg-navy-950">
         <GridPattern

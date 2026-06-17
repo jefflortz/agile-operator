@@ -182,9 +182,42 @@ export default async function PlaybookDetailPage({
 
   // ── EPISODE LAYOUT ─────────────────────────────────────────────────────────
   if (isEpisode) {
+    const pageUrl = `https://www.agile-operator.com/playbooks/${slug}`
+    const episodeThumbnail = content.featuredImage
+      ? urlFor(content.featuredImage).width(1280).height(720).url()
+      : null
+    const videoJsonLd = youtubeEmbedId
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'VideoObject',
+          name: content.title,
+          description: content.excerpt ?? content.title,
+          thumbnailUrl: episodeThumbnail ?? `https://img.youtube.com/vi/${youtubeEmbedId}/maxresdefault.jpg`,
+          uploadDate: content.publishedAt ?? new Date().toISOString(),
+          contentUrl: `https://www.youtube.com/watch?v=${youtubeEmbedId}`,
+          embedUrl: `https://www.youtube.com/embed/${youtubeEmbedId}`,
+          url: pageUrl,
+          publisher: {
+            '@type': 'Organization',
+            name: 'Agile Operator',
+            url: 'https://www.agile-operator.com',
+          },
+          ...(content.podcastDuration && { duration: content.podcastDuration }),
+          ...(content.guestName && {
+            actor: { '@type': 'Person', name: content.guestName },
+          }),
+        }
+      : null
+
     return (
       <>
         <ScrollProgress />
+        {videoJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }}
+          />
+        )}
 
         <div className="pt-24 pb-12 sm:pt-32">
           <Container>
