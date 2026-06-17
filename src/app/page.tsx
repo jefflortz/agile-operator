@@ -18,12 +18,12 @@ export const metadata: Metadata = {
   description:
     'Proven playbooks and frameworks for B2B SaaS operators navigating growth. Jeff Lortz helps technology CEOs balance margins and mandates at $5M–$50M ARR.',
   keywords: 'B2B SaaS growth advisory, technology CEO coaching, SaaS operator playbooks, Boston growth advisory, executive leadership',
-  alternates: { canonical: 'https://agile-operator.com' },
+  alternates: { canonical: 'https://www.agile-operator.com' },
   openGraph: {
     title: 'Agile Operator | Strategic Growth Advisory for Technology CEOs',
     description:
       'Proven playbooks and frameworks for B2B SaaS operators navigating growth. Balance margins and mandates.',
-    url: 'https://agile-operator.com',
+    url: 'https://www.agile-operator.com',
     type: 'website',
   },
   twitter: {
@@ -80,10 +80,10 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://agile-operator.com/#organization',
+      '@id': 'https://www.agile-operator.com/#organization',
       name: 'Agile Operator LLC',
-      url: 'https://agile-operator.com',
-      logo: 'https://agile-operator.com/SVG/Agile%20Operator-01.svg',
+      url: 'https://www.agile-operator.com',
+      logo: 'https://www.agile-operator.com/SVG/Agile%20Operator-01.svg',
       sameAs: [
         'https://www.linkedin.com/company/the-agile-operator/',
         'https://x.com/theagileoperator',
@@ -105,11 +105,11 @@ const jsonLd = {
     },
     {
       '@type': 'Person',
-      '@id': 'https://agile-operator.com/#jeff-lortz',
+      '@id': 'https://www.agile-operator.com/#jeff-lortz',
       name: 'Jeff Lortz',
       jobTitle: 'Founder & Principal Advisor',
-      worksFor: { '@id': 'https://agile-operator.com/#organization' },
-      url: 'https://agile-operator.com/about',
+      worksFor: { '@id': 'https://www.agile-operator.com/#organization' },
+      url: 'https://www.agile-operator.com/about',
       sameAs: [
         'https://www.linkedin.com/company/the-agile-operator/',
       ],
@@ -118,10 +118,10 @@ const jsonLd = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://agile-operator.com/#website',
-      url: 'https://agile-operator.com',
+      '@id': 'https://www.agile-operator.com/#website',
+      url: 'https://www.agile-operator.com',
       name: 'Agile Operator',
-      publisher: { '@id': 'https://agile-operator.com/#organization' },
+      publisher: { '@id': 'https://www.agile-operator.com/#organization' },
     },
   ],
 }

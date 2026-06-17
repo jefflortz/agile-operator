@@ -10,6 +10,43 @@ const nextConfig: NextConfig = {
     ],
   },
   async redirects() {
+    // WordPress page redirects (old WP slugs → new Next.js routes)
+    const pageRedirects = [
+      { source: '/about-us', destination: '/about', permanent: true },
+      { source: '/about-us/', destination: '/about', permanent: true },
+      { source: '/contact-saas-experts', destination: '/contact', permanent: true },
+      { source: '/contact-saas-experts/', destination: '/contact', permanent: true },
+      { source: '/book-your-strategy-session', destination: '/contact', permanent: true },
+      { source: '/book-your-strategy-session/', destination: '/contact', permanent: true },
+      { source: '/newsletter', destination: '/contact', permanent: true },
+      { source: '/newsletter/', destination: '/contact', permanent: true },
+    ]
+
+    // Service page redirects from WordPress URLs
+    const serviceRedirects = [
+      // Growth Advisory (WP may have used either slug — add both to be safe)
+      { source: '/business-growth', destination: '/services/growth-advisory', permanent: true },
+      { source: '/business-growth/', destination: '/services/growth-advisory', permanent: true },
+      { source: '/growth-advisory', destination: '/services/growth-advisory', permanent: true },
+      { source: '/growth-advisory/', destination: '/services/growth-advisory', permanent: true },
+      { source: '/services/business-growth', destination: '/services/growth-advisory', permanent: true },
+      { source: '/services/business-growth/', destination: '/services/growth-advisory', permanent: true },
+      { source: '/business-growth-consulting', destination: '/services/growth-advisory', permanent: true },
+      { source: '/business-growth-consulting/', destination: '/services/growth-advisory', permanent: true },
+      // Professional Growth / Executive Coaching
+      { source: '/professional-growth', destination: '/services/professional-growth', permanent: true },
+      { source: '/professional-growth/', destination: '/services/professional-growth', permanent: true },
+      { source: '/services/professional-growth-coaching', destination: '/services/professional-growth', permanent: true },
+      { source: '/services/professional-growth-coaching/', destination: '/services/professional-growth', permanent: true },
+      // Fractional Exec / Advisory
+      { source: '/advisory', destination: '/services/fractional-executive', permanent: true },
+      { source: '/advisory/', destination: '/services/fractional-executive', permanent: true },
+      { source: '/fractional-executive', destination: '/services/fractional-executive', permanent: true },
+      { source: '/fractional-executive/', destination: '/services/fractional-executive', permanent: true },
+      { source: '/services/advisory', destination: '/services/fractional-executive', permanent: true },
+      { source: '/services/advisory/', destination: '/services/fractional-executive', permanent: true },
+    ]
+
     const postSlugs = [
       'peer-advisory-council',
       'home-care-software-saas-founder-journey',
@@ -56,11 +93,13 @@ const nextConfig: NextConfig = {
       'sustainable-growth-referral-driven-business',
     ]
 
-    return postSlugs.map((slug) => ({
-      source: `/${slug}`,
-      destination: `/playbooks/${slug}`,
-      permanent: true,
-    }))
+    // Both with and without trailing slash — WordPress indexed the trailing-slash versions
+    const postRedirects = postSlugs.flatMap((slug) => [
+      { source: `/${slug}`, destination: `/playbooks/${slug}`, permanent: true },
+      { source: `/${slug}/`, destination: `/playbooks/${slug}`, permanent: true },
+    ])
+
+    return [...pageRedirects, ...serviceRedirects, ...postRedirects]
   },
 }
 

@@ -35,6 +35,10 @@ export default defineConfig({
               .title('Services')
               .schemaType('service')
               .child(S.documentTypeList('service').title('Services')),
+            S.listItem()
+              .title('Service Pillar Pages')
+              .schemaType('servicePillarPage')
+              .child(S.documentTypeList('servicePillarPage').title('Service Pillar Pages')),
             S.divider(),
             // Singletons
             S.listItem()

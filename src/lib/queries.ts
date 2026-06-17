@@ -1,5 +1,5 @@
 import { client } from './sanity'
-import type { PlaybookContentPreview, PlaybookContent, Service, MarginsAndMandates } from './types'
+import type { PlaybookContentPreview, PlaybookContent, Service, MarginsAndMandates, ServicePillarPage } from './types'
 
 // Exclude Sanity draft documents (ids starting with "drafts.")
 const PUBLISHED = `!(_id in path("drafts.**"))`
@@ -163,6 +163,41 @@ export async function getMarginsAndMandates(): Promise<MarginsAndMandates | null
       }
     }`
   )
+}
+
+// Service pillar page by slug
+export async function getServicePillarPage(slug: string): Promise<ServicePillarPage | null> {
+  return client.fetch(
+    `*[_type == "servicePillarPage" && ${PUBLISHED} && slug.current == $slug][0] {
+      _id,
+      serviceName,
+      "slug": slug.current,
+      heroHeadline,
+      heroSubhead,
+      introHeadline,
+      introBody,
+      benefitsHeadline,
+      benefits[] { _key, title, description },
+      processHeadline,
+      processSteps[] { _key, title, description },
+      faqHeadline,
+      faq[] { _key, question, answer },
+      "relatedCategory": relatedCategory->{ _id, title, "slug": slug.current },
+      ctaHeadline,
+      ctaBody,
+      ctaButtonLabel,
+      seo
+    }`,
+    { slug }
+  )
+}
+
+// All service pillar slugs — used by sitemap + generateStaticParams
+export async function getServicePillarSlugs(): Promise<string[]> {
+  const docs = await client.fetch(
+    `*[_type == "servicePillarPage" && ${PUBLISHED} && defined(slug.current)] { "slug": slug.current }`
+  )
+  return docs.map((d: { slug: string }) => d.slug)
 }
 
 // Services (ordered)

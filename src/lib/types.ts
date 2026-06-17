@@ -77,6 +77,51 @@ export type Service = {
   order?: number
 }
 
+export type ServicePillarBenefit = {
+  _key: string
+  title: string
+  description: string
+}
+
+export type ServicePillarStep = {
+  _key: string
+  title: string
+  description: string
+}
+
+export type ServicePillarFAQ = {
+  _key: string
+  question: string
+  answer: unknown[]
+}
+
+export type ServicePillarPage = {
+  _id: string
+  serviceName: string
+  slug: string
+  heroHeadline: string
+  heroSubhead?: string
+  introHeadline?: string
+  introBody?: unknown[]
+  benefitsHeadline?: string
+  benefits?: ServicePillarBenefit[]
+  processHeadline?: string
+  processSteps?: ServicePillarStep[]
+  faqHeadline?: string
+  faq?: ServicePillarFAQ[]
+  relatedCategory?: { _id: string; title: string; slug: string }
+  ctaHeadline?: string
+  ctaBody?: string
+  ctaButtonLabel?: string
+  seo?: {
+    title?: string
+    description?: string
+    keywords?: string[]
+    canonicalUrl?: string
+    openGraph?: { title?: string; description?: string; image?: unknown }
+  }
+}
+
 export type MarginsAndMandates = {
   tagline?: string
   description?: string

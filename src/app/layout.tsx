@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   description:
     'Strategic growth advisory for ambitious operators. Agile Operator provides proven playbooks and frameworks to balance margins and mandates.',
-  metadataBase: new URL('https://agile-operator.com'),
+  metadataBase: new URL('https://www.agile-operator.com'),
   icons: {
     icon: [
       { url: '/SVG/Agile Operator-03.svg', type: 'image/svg+xml' },

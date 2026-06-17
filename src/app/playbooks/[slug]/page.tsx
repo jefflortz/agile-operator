@@ -26,7 +26,9 @@ export async function generateMetadata({
 
   const seoTitle = doc.seo?.title || `${doc.title} | Agile Operator`
   const seoDescription = doc.seo?.description || doc.excerpt || ''
-  const canonical = doc.seo?.canonicalUrl || `https://agile-operator.com/playbooks/${slug}`
+  const rawCanonical = doc.seo?.canonicalUrl || `https://www.agile-operator.com/playbooks/${slug}`
+  // Normalize: Sanity docs were migrated with non-www domain — force www
+  const canonical = rawCanonical.replace('https://agile-operator.com/', 'https://www.agile-operator.com/')
   const keywords = doc.seo?.keywords?.join(', ') || undefined
 
   // OG image: prefer explicit seo.openGraph.image, fall back to featuredImage
