@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "createdAt": "2026-06-06T17:24:20.403Z",
+  "createdAt": "2026-06-17T17:26:27.925Z",
   "workspaces": [
     {
       "name": "agile-operator",
@@ -12,7 +12,7 @@
       "mediaLibrary": {
         "enabled": false
       },
-      "schema": "607102a0.create-schema.json",
+      "schema": "5278af07.create-schema.json",
       "tools": "3d00571d.create-tools.json"
     }
   ]

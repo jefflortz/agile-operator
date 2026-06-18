@@ -1,4 +1,4 @@
-import{a_ as F,aN as w,b5 as S,aE as e,c as I,aY as y,ax as i}from"./sanity-DAsMoORO.js";var R=i.div`
+import{a_ as F,aN as w,b5 as S,aE as e,c as I,aY as y,ax as i}from"./sanity-CYWBViMx.js";var R=i.div`
   max-width: 600px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #ffffff;

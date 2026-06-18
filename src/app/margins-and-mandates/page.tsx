@@ -128,7 +128,7 @@ export default async function MarginsAndMandatesPage() {
     name: 'Margins & Mandates',
     description,
     url: 'https://www.agile-operator.com/margins-and-mandates',
-    image: coverImageUrl ?? 'https://www.agile-operator.com/Margin and Mandates/Margins and Mandates Logo[58] (1).jpg',
+    image: coverImageUrl ?? 'https://www.agile-operator.com/Margin and Mandates/mm-cover.png',
     author: {
       '@type': 'Person',
       name: 'Jeff Lortz',
@@ -159,42 +159,31 @@ export default async function MarginsAndMandatesPage() {
           yOffset={-96}
           interactive
         />
+        {/* Logo watermark — blended into the hero background */}
+        <div className="absolute inset-y-0 right-0 -z-10 flex items-center justify-end pointer-events-none select-none pr-8 lg:pr-16">
+          <Image
+            src="/Margin and Mandates/mm-logo-dark.png"
+            alt=""
+            aria-hidden="true"
+            width={420}
+            height={420}
+            className="opacity-40 mix-blend-screen"
+            priority
+          />
+        </div>
         <Container className="pb-24 pt-36 sm:pb-32 sm:pt-44 md:pt-52">
           <FadeIn>
-            <div className="flex flex-col lg:flex-row lg:items-end gap-10 lg:gap-16">
-
-              {/* Show art */}
-              <div className="flex-shrink-0">
-                {coverImageUrl ? (
-                  <Image
-                    src={coverImageUrl}
-                    alt="Margins & Mandates"
-                    width={180}
-                    height={180}
-                    className="rounded-2xl shadow-2xl"
-                    priority
-                  />
-                ) : (
-                  <Image
-                    src="/Margin and Mandates/Margins and Mandates Logo[58] (1).jpg"
-                    alt="Margins & Mandates"
-                    width={180}
-                    height={180}
-                    className="rounded-2xl shadow-2xl"
-                    priority
-                  />
-                )}
-              </div>
+            <div className="flex flex-col gap-6">
 
               {/* Show info */}
-              <div className="flex-1">
+              <div className="max-w-3xl">
                 <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-400 mb-3">
                   Podcast · Hosted by Jeff Lortz
                 </p>
-                <h1 className="font-display text-5xl font-medium tracking-tight text-white sm:text-6xl text-balance">
+                <h1 className="font-display text-5xl font-medium tracking-tight text-white sm:text-7xl text-balance">
                   Margins &amp; Mandates
                 </h1>
-                <p className="mt-4 text-xl text-navy-200 max-w-2xl leading-relaxed">
+                <p className="mt-6 text-xl text-navy-200 max-w-2xl leading-relaxed">
                   {tagline}
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">

@@ -71,7 +71,7 @@ export const revalidate = 3600 // re-generate at most once per hour
 export async function GET() {
   const episodes = await getEpisodes()
 
-  const showImageUrl = `${BASE_URL}/Margin%20and%20Mandates/Margins%20and%20Mandates%20Logo%5B58%5D%20(1).jpg`
+  const showImageUrl = `${BASE_URL}/Margin%20and%20Mandates/mm-cover.png`
   const feedUrl = `${BASE_URL}/feed/podcast`
 
   const items = episodes

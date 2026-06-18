@@ -204,8 +204,8 @@ export default function AboutPage() {
         <Container>
           <div className="flex flex-col sm:flex-row items-center gap-8 rounded-2xl bg-navy-50 p-8 sm:p-10">
             <Image
-              src="/Margin and Mandates/Margins and Mandates Logo[58] (1).jpg"
-              alt="Margins and Mandates Podcast"
+              src="/Margin and Mandates/mm-logo-light.png"
+              alt="Margins & Mandates Podcast"
               width={100}
               height={100}
               className="rounded-xl flex-shrink-0"
