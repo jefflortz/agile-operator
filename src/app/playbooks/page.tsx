@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 import ContentCard from '@/components/ui/ContentCard'
@@ -41,6 +42,84 @@ function toCardProps(item: PlaybookContentPreview) {
   }
 }
 
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    month: 'long', day: 'numeric', year: 'numeric',
+  })
+}
+
+function FeaturedPost({ item }: { item: PlaybookContentPreview }) {
+  const slug = typeof item.slug === 'string' ? item.slug : item.slug.current
+  const imageUrl = item.featuredImage
+    ? urlFor(item.featuredImage).width(1600).height(900).url()
+    : null
+  const isEpisode = item.contentType === 'episode'
+  const href = `/playbooks/${slug}`
+
+  return (
+    <FadeIn>
+      <Link href={href} className="group block">
+        <div className="relative overflow-hidden rounded-2xl bg-navy-950 min-h-[420px] sm:min-h-[500px] flex items-end">
+          {/* Background image */}
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              alt={item.featuredImage?.alt ?? item.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              priority
+            />
+          )}
+
+          {/* Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/60 to-navy-900/20" />
+
+          {/* Content */}
+          <div className="relative z-10 w-full p-8 sm:p-12">
+            <div className="max-w-2xl">
+              {/* Badge */}
+              <span className="inline-block mb-4 text-xs font-sans font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-gold-400/20 text-gold-400">
+                {isEpisode ? 'Latest Episode' : 'Latest Article'}
+              </span>
+
+              {/* Category */}
+              {item.categories?.[0] && (
+                <p className="text-sm text-navy-300 mb-2">{item.categories[0].title}</p>
+              )}
+
+              {/* Title */}
+              <h2 className="font-display text-3xl sm:text-4xl font-medium tracking-tight text-white text-balance leading-tight group-hover:text-gold-100 transition-colors">
+                {item.title}
+              </h2>
+
+              {/* Excerpt */}
+              {item.excerpt && (
+                <p className="mt-4 text-base text-navy-300 leading-relaxed line-clamp-2 max-w-xl">
+                  {item.excerpt}
+                </p>
+              )}
+
+              {/* Meta */}
+              <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-navy-400">
+                {item.publishedAt && <span>{formatDate(item.publishedAt)}</span>}
+                {isEpisode && item.guestName && (
+                  <span>with {item.guestName}</span>
+                )}
+                <span className="flex items-center gap-1.5 text-gold-400 font-medium group-hover:gap-2.5 transition-all">
+                  {isEpisode ? 'Listen now' : 'Read article'}
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </FadeIn>
+  )
+}
+
 function buildHref(type: FilterType, category: string | undefined, newType?: FilterType, newCategory?: string) {
   const t = newType ?? type
   const c = newCategory
@@ -74,6 +153,9 @@ export default async function PlaybooksPage({
   ]
 
   const showCategoryFilter = filter !== 'episode' && categories.length > 0
+  const isDefaultView = filter === 'all' && !activeCategory
+  const featuredItem = isDefaultView && items.length > 0 ? items[0] : null
+  const gridItems = featuredItem ? items.slice(1) : items
 
   return (
     <div className="pt-24 pb-24 sm:pt-32">
@@ -92,6 +174,13 @@ export default async function PlaybooksPage({
           </p>
         </FadeIn>
       </Container>
+
+      {/* Featured post — latest content, default view only */}
+      {featuredItem && (
+        <Container className="mt-12">
+          <FeaturedPost item={featuredItem} />
+        </Container>
+      )}
 
       {/* Two-column layout */}
       <Container className="mt-14">
@@ -151,19 +240,19 @@ export default async function PlaybooksPage({
             </FadeIn>
 
             {/* Content grid */}
-            {items.length > 0 ? (
+            {gridItems.length > 0 ? (
               <FadeInStagger className="mt-8">
                 {/* Episodes: single column (horizontal card reads better full-width) */}
                 {/* Articles / All: two-column grid */}
                 <div className={filter === 'episode' ? 'flex flex-col gap-6' : 'grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch'}>
-                  {items.map((item) => (
+                  {gridItems.map((item) => (
                     <FadeIn key={item._id}>
                       <ContentCard {...toCardProps(item)} />
                     </FadeIn>
                   ))}
                 </div>
               </FadeInStagger>
-            ) : (
+            ) : featuredItem ? null : (
               <FadeIn className="mt-16">
                 <p className="text-gray-400 text-sm">No content found for this filter.</p>
               </FadeIn>

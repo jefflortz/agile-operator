@@ -64,6 +64,28 @@ export async function generateMetadata({
 // ── Portable Text components ─────────────────────────────────────────────────
 
 const portableTextComponents = {
+  types: {
+    image: ({ value }: { value: { asset?: { _ref: string }; alt?: string; caption?: string } }) => {
+      if (!value?.asset) return null
+      const imageUrl = urlFor(value).width(1200).url()
+      return (
+        <figure className="my-10">
+          <Image
+            src={imageUrl}
+            alt={value.alt ?? ''}
+            width={1200}
+            height={675}
+            className="rounded-lg w-full h-auto"
+          />
+          {value.caption && (
+            <figcaption className="mt-3 text-sm text-gray-400 text-center italic">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      )
+    },
+  },
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
       <p className="mt-6 text-lg text-gray-600 leading-relaxed">{children}</p>
