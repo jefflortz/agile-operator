@@ -40,6 +40,7 @@ const fallbackServices: Service[] = [
     headline:
       'Strategy, planning, and operational execution for growth-stage companies navigating complexity under investor pressure.',
     order: 1,
+    pillarPageSlug: 'growth-advisory',
   },
   {
     _id: 'fallback-2',
@@ -47,6 +48,7 @@ const fallbackServices: Service[] = [
     headline:
       '1:1 coaching for individual leaders navigating performance challenges, executive transitions, and scaling demands.',
     order: 2,
+    pillarPageSlug: 'executive-coaching',
   },
   {
     _id: 'fallback-3',
@@ -54,6 +56,7 @@ const fallbackServices: Service[] = [
     headline:
       'Experienced CEO, CMO, or operator leadership on a defined-term basis when you need steady hands fast.',
     order: 3,
+    pillarPageSlug: 'interim-fractional-executive',
   },
 ]
 
@@ -181,8 +184,18 @@ export default async function Home() {
           <FadeInStagger>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               {services.map((service, index) => {
+                // Prefer the Sanity-linked slug, fall back to known title→slug map
+                // so links work even before the seed script has run.
+                const PILLAR_SLUGS: Record<string, string> = {
+                  'Growth Advisory': 'growth-advisory',
+                  'Executive Coaching': 'executive-coaching',
+                  'Interim / Fractional Executive': 'interim-fractional-executive',
+                  'Interim & Fractional Executive': 'interim-fractional-executive',
+                }
                 const href = service.pillarPageSlug
                   ? `/services/${service.pillarPageSlug}`
+                  : PILLAR_SLUGS[service.title]
+                  ? `/services/${PILLAR_SLUGS[service.title]}`
                   : '/services'
                 return (
                   <FadeIn key={service._id}>
