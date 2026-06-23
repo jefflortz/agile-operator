@@ -108,49 +108,37 @@ function ServiceSection({
     : defaultImage
 
   return (
-    <Container className="py-20 sm:py-28">
+    <Container className="py-16 sm:py-24">
       <div
-        className={`flex flex-col lg:flex-row lg:items-center lg:gap-x-8 xl:gap-x-20 ${
+        className={`flex flex-col lg:flex-row lg:items-center lg:gap-x-12 xl:gap-x-16 ${
           isReversed ? 'lg:flex-row-reverse' : ''
         }`}
       >
-        {/* ── Image ─────────────────────────────────────────────────────── */}
-        <div className="flex justify-center lg:justify-end lg:flex-none">
-          <FadeIn className="w-full max-w-[31rem] lg:max-w-[41rem]">
-            <StylizedImage
-              src={imageSrc}
-              shape={shape}
-              sizes="(min-width: 1024px) 41rem, 31rem"
-              className={isReversed ? 'lg:justify-start' : 'lg:justify-end'}
-            />
-          </FadeIn>
-        </div>
+        {/* ── Image — takes the majority of horizontal space ──────────── */}
+        <FadeIn className="w-full lg:flex-1 lg:min-w-0">
+          <StylizedImage
+            src={imageSrc}
+            shape={shape}
+            sizes="(min-width: 1024px) 55vw, 100vw"
+          />
+        </FadeIn>
 
-        {/* ── Content ───────────────────────────────────────────────────── */}
-        <div className="mt-12 lg:mt-0 lg:w-[37rem] lg:flex-none">
+        {/* ── Content — fixed narrower column ────────────────────────── */}
+        <div className="mt-10 lg:mt-0 lg:w-[26rem] lg:flex-none">
           <FadeIn>
-            <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-4">
+            <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-3">
               {service.title}
             </p>
-            <h2 className="font-display text-3xl font-medium tracking-tight text-navy-900 sm:text-4xl text-balance">
+            <h2 className="font-display text-2xl font-medium tracking-tight text-navy-900 sm:text-3xl text-balance">
               {service.headline ?? service.title}
             </h2>
 
-            {service.description && service.description.length > 0 && (
-              <div className="mt-6 space-y-4">
-                <PortableText
-                  value={service.description as Parameters<typeof PortableText>[0]['value']}
-                  components={ptComponents}
-                />
-              </div>
-            )}
-
             {service.outcomes && service.outcomes.length > 0 && (
-              <ul className="mt-8 space-y-4">
-                {service.outcomes.map((outcome, i) => (
-                  <li key={i} className="flex gap-3 items-start text-base text-gray-600 leading-relaxed">
+              <ul className="mt-6 space-y-3">
+                {service.outcomes.slice(0, 2).map((outcome, i) => (
+                  <li key={i} className="flex gap-3 items-start text-sm text-gray-600 leading-relaxed">
                     <span
-                      className="mt-[0.45rem] h-1.5 w-1.5 rounded-full bg-gold-500 flex-shrink-0"
+                      className="mt-[0.4rem] h-1.5 w-1.5 rounded-full bg-gold-500 flex-shrink-0"
                       aria-hidden="true"
                     />
                     {outcome}
@@ -161,7 +149,7 @@ function ServiceSection({
 
             <a
               href={href}
-              className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 hover:text-gold-500 transition-colors"
+              className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 hover:text-gold-500 transition-colors"
             >
               Learn more
               <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
