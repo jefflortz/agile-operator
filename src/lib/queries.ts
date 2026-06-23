@@ -205,6 +205,7 @@ export async function getServices(): Promise<Service[]> {
   return client.fetch(
     `*[_type == "service"] | order(order asc) {
       _id, title, headline, description, outcomes, order,
+      image { asset, alt, hotspot },
       "pillarPageSlug": pillarPage->slug.current
     }`
   )

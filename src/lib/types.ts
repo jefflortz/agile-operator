@@ -76,6 +76,7 @@ export type Service = {
   outcomes?: string[]
   order?: number
   pillarPageSlug?: string
+  image?: SanityImage
 }
 
 export type ServicePillarBenefit = {

@@ -22,6 +22,15 @@ export default defineType({
       validation: (Rule) => Rule.max(3),
     }),
     defineField({
+      name: 'image',
+      title: 'Service Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({ name: 'alt', title: 'Alt Text', type: 'string', validation: (Rule) => Rule.required() }),
+      ],
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',

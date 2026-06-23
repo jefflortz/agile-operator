@@ -1,85 +1,94 @@
-import { PortableText } from '@portabletext/react'
 import type { Metadata } from 'next'
+import { PortableText } from '@portabletext/react'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { SectionIntro } from '@/components/ui/SectionIntro'
 import { GridPattern } from '@/components/ui/GridPattern'
-import { Border } from '@/components/ui/Border'
+import { StylizedImage } from '@/components/ui/StylizedImage'
 import Button from '@/components/ui/Button'
 import { getServices } from '@/lib/queries'
+import { urlFor } from '@/lib/sanity'
 import type { Service } from '@/lib/types'
+import imageWhiteboard from '@/images/whiteboard.jpg'
+import imageMeeting from '@/images/meeting.jpg'
+import imageLaptop from '@/images/laptop.jpg'
+import type { StaticImageData } from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Services | Agile Operator',
   description:
-    'Growth advisory, executive coaching, and fractional executive leadership for growth-stage companies navigating complexity under investor pressure.',
+    'Three ways Agile Operator works with growth-stage companies — growth advisory, executive coaching, and interim or fractional executive leadership.',
 }
 
-// Fallback until Sanity services are populated
+// ── Default images + shapes per slot ─────────────────────────────────────────
+const DEFAULT_VISUALS: { image: StaticImageData; shape: 0 | 1 | 2 }[] = [
+  { image: imageWhiteboard, shape: 0 },
+  { image: imageMeeting,    shape: 1 },
+  { image: imageLaptop,     shape: 2 },
+]
+
+// ── Slug map (fallback when Sanity pillarPage ref isn't set yet) ──────────────
+const PILLAR_SLUGS: Record<string, string> = {
+  'Growth Advisory':                   'growth-advisory',
+  'Executive Coaching':                'executive-coaching',
+  'Interim / Fractional Executive':    'interim-fractional-executive',
+  'Interim & Fractional Executive':    'interim-fractional-executive',
+}
+
+// ── Fallback service data ─────────────────────────────────────────────────────
 const fallbackServices: Service[] = [
   {
     _id: 'fallback-1',
     title: 'Growth Advisory',
-    headline:
-      'Strategy and execution for companies navigating complexity under investor pressure.',
+    headline: "Most growth-stage companies don't have a vision problem. They have an execution problem.",
     outcomes: [
-      'Aligned leadership team with a clear operating cadence',
-      'Prioritized growth strategy built for your stage and sector',
-      'Execution frameworks that hold up under board-level scrutiny',
+      'Operating cadence installed. Meeting rhythms, decision rights, and reporting structures that keep your team aligned.',
+      'Investor-ready strategy. Clear assumptions, honest risks, and credible milestones that hold up in the boardroom.',
+      'Execution accountability. We stay in the room long enough to make sure the strategy doesn\'t dissolve under daily pressure.',
     ],
     order: 1,
+    pillarPageSlug: 'growth-advisory',
   },
   {
     _id: 'fallback-2',
     title: 'Executive Coaching',
-    headline:
-      '1:1 coaching for leaders navigating performance challenges, transitions, and scaling demands.',
+    headline: 'The best leaders invest in getting better. And they do it before a crisis forces their hand.',
     outcomes: [
-      'Clarity on leadership identity and decision-making style',
-      'A personal operating system for high-stakes environments',
-      'Accelerated development through honest, experienced counsel',
+      'Defined leadership identity. Clarity on your defaults under pressure and where your blind spots live.',
+      'Personal operating system. Practical tools for managing time, energy, and decisions at the pace your role demands.',
+      'Difficult conversation skills. The confidence to have the hard conversations your role requires without damaging what matters.',
     ],
     order: 2,
+    pillarPageSlug: 'executive-coaching',
   },
   {
     _id: 'fallback-3',
-    title: 'Interim / Fractional Executive',
-    headline:
-      'Experienced CEO, CMO, or operator leadership on a defined-term basis when you need steady hands fast.',
+    title: 'Interim & Fractional Executive',
+    headline: 'Leadership gaps are expensive. Filling them with the wrong person is worse.',
     outcomes: [
-      'Day-one credibility with your board and leadership team',
-      'Rapid stabilization or transition without a long-term commitment',
-      'Full-time presence and accountability without full-time cost',
+      'Day-one credibility. A leader your board, investors, and team trust from the first meeting.',
+      'Defined scope and timeline. No open-ended commitments — we agree upfront on what success looks like and when we\'re done.',
+      'Clean knowledge transfer. We don\'t build dependency. What we create, your permanent team inherits and can run.',
     ],
     order: 3,
+    pillarPageSlug: 'interim-fractional-executive',
   },
 ]
 
-const portableTextComponents = {
+// ── Portable text ─────────────────────────────────────────────────────────────
+const ptComponents = {
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mt-4 text-lg text-gray-600 leading-relaxed">{children}</p>
+      <p className="text-base text-gray-600 leading-relaxed mt-4 first:mt-0">{children}</p>
+    ),
+  },
+  marks: {
+    strong: ({ children }: { children?: React.ReactNode }) => (
+      <strong className="font-semibold text-navy-900">{children}</strong>
     ),
   },
 }
 
-function CheckIcon() {
-  return (
-    <svg
-      className="h-5 w-5 flex-shrink-0 text-gold-500 mt-0.5"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        fillRule="evenodd"
-        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-        clipRule="evenodd"
-      />
-    </svg>
-  )
-}
-
+// ── Service section ───────────────────────────────────────────────────────────
 function ServiceSection({
   service,
   index,
@@ -87,73 +96,92 @@ function ServiceSection({
   service: Service
   index: number
 }) {
-  const isEven = index % 2 === 0
+  const isReversed = index % 2 !== 0
+  const slug = service.pillarPageSlug ?? PILLAR_SLUGS[service.title]
+  const href = slug ? `/services/${slug}` : '/contact'
+  const { image: defaultImage, shape } = DEFAULT_VISUALS[index % 3]
+
+  // Use the Sanity image if one has been uploaded, otherwise fall back to the
+  // template stock photo for this slot.
+  const imageSrc = service.image
+    ? urlFor(service.image).width(1400).height(1330).url()
+    : defaultImage
 
   return (
-    <div className={isEven ? 'bg-white py-24 sm:py-32' : 'bg-navy-50 py-24 sm:py-32'}>
-      <Container>
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-start">
-          {/* Left: service identity + description */}
+    <Container className="py-20 sm:py-28">
+      <div
+        className={`flex flex-col lg:flex-row lg:items-center lg:gap-x-8 xl:gap-x-20 ${
+          isReversed ? 'lg:flex-row-reverse' : ''
+        }`}
+      >
+        {/* ── Image ─────────────────────────────────────────────────────── */}
+        <div className="flex justify-center lg:justify-end lg:flex-none">
+          <FadeIn className="w-full max-w-[31rem] lg:max-w-[41rem]">
+            <StylizedImage
+              src={imageSrc}
+              shape={shape}
+              sizes="(min-width: 1024px) 41rem, 31rem"
+              className={isReversed ? 'lg:justify-start' : 'lg:justify-end'}
+            />
+          </FadeIn>
+        </div>
+
+        {/* ── Content ───────────────────────────────────────────────────── */}
+        <div className="mt-12 lg:mt-0 lg:w-[37rem] lg:flex-none">
           <FadeIn>
             <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-4">
               {service.title}
             </p>
-            <h2 className="font-display text-3xl font-medium tracking-tight text-balance text-navy-900 sm:text-4xl">
+            <h2 className="font-display text-3xl font-medium tracking-tight text-navy-900 sm:text-4xl text-balance">
               {service.headline ?? service.title}
             </h2>
-            {service.description && (
-              <div className="mt-6">
+
+            {service.description && service.description.length > 0 && (
+              <div className="mt-6 space-y-4">
                 <PortableText
                   value={service.description as Parameters<typeof PortableText>[0]['value']}
-                  components={portableTextComponents}
+                  components={ptComponents}
                 />
               </div>
             )}
-          </FadeIn>
 
-          {/* Right: outcomes + CTA */}
-          <FadeIn>
-            {service.outcomes && service.outcomes.length > 0 ? (
-              <Border className="pt-8">
-                <p className="font-sans text-xs font-semibold uppercase tracking-widest text-navy-400 mb-6">
-                  What you walk away with
-                </p>
-                <ul className="space-y-4">
-                  {service.outcomes.map((outcome, i) => (
-                    <li key={i} className="flex gap-3 items-start">
-                      <CheckIcon />
-                      <span className="text-base text-navy-700 leading-relaxed">
-                        {outcome}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-10 flex flex-wrap gap-4">
-                  <Button href="/contact">Start a Conversation</Button>
-                  {service.pillarPageSlug && (
-                    <Button href={`/services/${service.pillarPageSlug}`} variant="outline">
-                      Learn More
-                    </Button>
-                  )}
-                </div>
-              </Border>
-            ) : (
-              <div className="pt-8 flex flex-wrap gap-4">
-                <Button href="/contact">Start a Conversation</Button>
-                {service.pillarPageSlug && (
-                  <Button href={`/services/${service.pillarPageSlug}`} variant="outline">
-                    Learn More
-                  </Button>
-                )}
-              </div>
+            {service.outcomes && service.outcomes.length > 0 && (
+              <ul className="mt-8 space-y-4">
+                {service.outcomes.map((outcome, i) => (
+                  <li key={i} className="flex gap-3 items-start text-base text-gray-600 leading-relaxed">
+                    <span
+                      className="mt-[0.45rem] h-1.5 w-1.5 rounded-full bg-gold-500 flex-shrink-0"
+                      aria-hidden="true"
+                    />
+                    {outcome}
+                  </li>
+                ))}
+              </ul>
             )}
+
+            <a
+              href={href}
+              className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 hover:text-gold-500 transition-colors"
+            >
+              Learn more
+              <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  d="M6 12l4-4-4-4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
           </FadeIn>
         </div>
-      </Container>
-    </div>
+      </div>
+    </Container>
   )
 }
 
+// ── Page ──────────────────────────────────────────────────────────────────────
 export default async function ServicesPage() {
   const sanityServices = await getServices()
   const services = sanityServices.length > 0 ? sanityServices : fallbackServices
@@ -173,24 +201,29 @@ export default async function ServicesPage() {
               Our Services
             </p>
             <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-navy-900 sm:text-6xl">
-              The right partnership for what you&apos;re facing.
+              Three ways we work with your business.
             </h1>
-            <p className="mt-6 text-xl text-gray-600 max-w-xl">
-              We don&apos;t run plays from a playbook we found somewhere. We bring
-              operator-earned experience to every engagement — and we meet you where
-              the work is hardest.
+            <p className="mt-6 text-xl text-gray-600 max-w-xl leading-relaxed">
+              Every engagement starts with a direct conversation. No packaged programs,
+              no fixed retainers before you&apos;re ready. We design the scope around
+              what you actually need.
             </p>
+            <div className="mt-8">
+              <Button href="/contact" size="lg">Book a Strategy Session</Button>
+            </div>
           </FadeIn>
         </Container>
       </div>
 
-      {/* Service sections — alternating white / navy-50 */}
-      {services.map((service, index) => (
-        <ServiceSection key={service._id} service={service} index={index} />
-      ))}
+      {/* Service sections */}
+      <div className="mt-8 space-y-4 sm:space-y-8">
+        {services.map((service, index) => (
+          <ServiceSection key={service._id} service={service} index={index} />
+        ))}
+      </div>
 
-      {/* Final CTA */}
-      <div className="bg-navy-900 py-24 sm:py-32">
+      {/* Bottom CTA */}
+      <div className="mt-16 bg-navy-900 py-24 sm:py-32">
         <Container>
           <FadeIn>
             <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-400 mb-4">
