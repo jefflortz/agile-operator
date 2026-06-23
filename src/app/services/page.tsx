@@ -114,8 +114,8 @@ function ServiceSection({
           isReversed ? 'lg:flex-row-reverse' : ''
         }`}
       >
-        {/* ── Image — takes the majority of horizontal space ──────────── */}
-        <FadeIn className="w-full lg:flex-1 lg:min-w-0">
+        {/* ── Image ──────────────────────────────────────────────────── */}
+        <FadeIn className="w-full lg:w-[34rem] lg:flex-none">
           <StylizedImage
             src={imageSrc}
             shape={shape}
