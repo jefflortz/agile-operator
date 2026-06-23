@@ -128,13 +128,23 @@ function ServiceSection({
                     </li>
                   ))}
                 </ul>
-                <div className="mt-10">
+                <div className="mt-10 flex flex-wrap gap-4">
                   <Button href="/contact">Start a Conversation</Button>
+                  {service.pillarPageSlug && (
+                    <Button href={`/services/${service.pillarPageSlug}`} variant="outline">
+                      Learn More
+                    </Button>
+                  )}
                 </div>
               </Border>
             ) : (
-              <div className="pt-8">
+              <div className="pt-8 flex flex-wrap gap-4">
                 <Button href="/contact">Start a Conversation</Button>
+                {service.pillarPageSlug && (
+                  <Button href={`/services/${service.pillarPageSlug}`} variant="outline">
+                    Learn More
+                  </Button>
+                )}
               </div>
             )}
           </FadeIn>

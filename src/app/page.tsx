@@ -180,25 +180,39 @@ export default async function Home() {
         <Container className="mt-16">
           <FadeInStagger>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-              {services.map((service, index) => (
-                <FadeIn key={service._id}>
-                  <Border className="pt-8">
-                    <p className="font-display text-6xl font-medium text-navy-900 opacity-[0.06] leading-none mb-3 select-none" aria-hidden="true">
-                      {String(index + 1).padStart(2, '0')}
-                    </p>
-                    <h3 className="font-display text-2xl font-semibold text-navy-900">
-                      {service.title}
-                    </h3>
-                    <p className="mt-4 text-base text-gray-600 leading-relaxed">
-                      {service.headline}
-                    </p>
-                  </Border>
-                </FadeIn>
-              ))}
+              {services.map((service, index) => {
+                const href = service.pillarPageSlug
+                  ? `/services/${service.pillarPageSlug}`
+                  : '/services'
+                return (
+                  <FadeIn key={service._id}>
+                    <Border className="pt-8 flex flex-col h-full">
+                      <p className="font-display text-6xl font-medium text-navy-900 opacity-[0.06] leading-none mb-3 select-none" aria-hidden="true">
+                        {String(index + 1).padStart(2, '0')}
+                      </p>
+                      <h3 className="font-display text-2xl font-semibold text-navy-900">
+                        {service.title}
+                      </h3>
+                      <p className="mt-4 text-base text-gray-600 leading-relaxed flex-1">
+                        {service.headline}
+                      </p>
+                      <a
+                        href={href}
+                        className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 hover:text-gold-500 transition-colors"
+                      >
+                        Learn More
+                        <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M6 12l4-4-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </a>
+                    </Border>
+                  </FadeIn>
+                )
+              })}
             </div>
           </FadeInStagger>
           <FadeIn className="mt-12">
-            <Button href="/services" variant="outline">Learn More</Button>
+            <Button href="/services" variant="outline">View All Services</Button>
           </FadeIn>
         </Container>
       </div>

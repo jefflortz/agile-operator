@@ -204,7 +204,8 @@ export async function getServicePillarSlugs(): Promise<string[]> {
 export async function getServices(): Promise<Service[]> {
   return client.fetch(
     `*[_type == "service"] | order(order asc) {
-      _id, title, headline, description, outcomes, order
+      _id, title, headline, description, outcomes, order,
+      "pillarPageSlug": pillarPage->slug.current
     }`
   )
 }

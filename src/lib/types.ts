@@ -75,6 +75,7 @@ export type Service = {
   description?: unknown[]
   outcomes?: string[]
   order?: number
+  pillarPageSlug?: string
 }
 
 export type ServicePillarBenefit = {

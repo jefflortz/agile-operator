@@ -27,6 +27,13 @@ export default defineType({
       type: 'number',
       description: '1 = first, 2 = second, 3 = third',
     }),
+    defineField({
+      name: 'pillarPage',
+      title: 'Pillar Landing Page',
+      type: 'reference',
+      to: [{ type: 'servicePillarPage' }],
+      description: 'Links the "Learn More" button on the services index to this service\'s dedicated landing page.',
+    }),
   ],
   orderings: [
     { title: 'Display Order', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] },
