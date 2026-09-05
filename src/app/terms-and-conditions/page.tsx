@@ -3,7 +3,7 @@ import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | Agile Operator',
+  title: 'Terms & Conditions',
   description: 'Terms and conditions for use of agile-operator.com.',
   alternates: { canonical: 'https://www.agile-operator.com/terms-and-conditions' },
   robots: { index: false },

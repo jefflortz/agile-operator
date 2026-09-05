@@ -9,7 +9,7 @@ import { urlFor } from '@/lib/sanity'
 import type { PlaybookContentPreview } from '@/lib/types'
 
 export const metadata: Metadata = {
-  title: 'Playbooks | Agile Operator',
+  title: 'Playbooks',
   description:
     'Articles and podcast episodes covering SaaS growth, executive leadership, go-to-market strategy, and operational frameworks for technology CEOs and B2B operators.',
   keywords: 'SaaS growth playbooks, B2B operator frameworks, technology CEO articles, Margins and Mandates podcast',

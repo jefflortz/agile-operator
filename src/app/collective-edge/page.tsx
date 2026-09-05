@@ -7,7 +7,7 @@ import { Border } from '@/components/ui/Border'
 import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'Collective Edge — CEO Council | Agile Operator',
+  title: 'Collective Edge — CEO Council',
   description:
     'A peer-advisory council for Boston technology CEOs. Eight seats. Founding cohort forming for Summer 2026.',
 }

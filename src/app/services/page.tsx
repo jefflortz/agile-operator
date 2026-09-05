@@ -14,7 +14,7 @@ import imageLaptop from '@/images/laptop.jpg'
 import type { StaticImageData } from 'next/image'
 
 export const metadata: Metadata = {
-  title: 'Services | Agile Operator',
+  title: 'Services',
   description:
     'Three ways Agile Operator works with growth-stage companies — growth advisory, executive coaching, and interim or fractional executive leadership.',
 }

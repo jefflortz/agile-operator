@@ -1,10 +1,13 @@
 import type { MetadataRoute } from 'next'
-import { getAllSlugs } from '@/lib/queries'
+import { getAllSlugs, getServicePillarSlugs } from '@/lib/queries'
 
 const BASE = 'https://www.agile-operator.com'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const slugs = await getAllSlugs()
+  const [slugs, serviceSlugs] = await Promise.all([
+    getAllSlugs(),
+    getServicePillarSlugs(),
+  ])
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE,                             lastModified: new Date(), changeFrequency: 'weekly',  priority: 1.0 },
@@ -17,6 +20,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/contact`,                lastModified: new Date(), changeFrequency: 'yearly',  priority: 0.5 },
   ]
 
+  const serviceRoutes: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
+    url: `${BASE}/services/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  }))
+
   const contentRoutes: MetadataRoute.Sitemap = slugs.map((slug) => ({
     url: `${BASE}/playbooks/${slug}`,
     lastModified: new Date(),
@@ -24,5 +34,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  return [...staticRoutes, ...contentRoutes]
+  return [...staticRoutes, ...serviceRoutes, ...contentRoutes]
 }

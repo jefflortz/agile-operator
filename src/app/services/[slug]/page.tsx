@@ -27,7 +27,8 @@ export async function generateMetadata(
   const seoDesc = page.seo?.description ?? page.heroSubhead ?? ''
 
   return {
-    title: seoTitle,
+    // `absolute` bypasses the root layout template — seoTitle already carries the brand
+    title: { absolute: seoTitle },
     description: seoDesc,
     keywords: page.seo?.keywords,
     alternates: { canonical: page.seo?.canonicalUrl ?? `/services/${slug}` },

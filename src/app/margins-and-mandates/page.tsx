@@ -11,7 +11,7 @@ import { urlFor } from '@/lib/sanity'
 import type { PlaybookContentPreview } from '@/lib/types'
 
 export const metadata: Metadata = {
-  title: 'Margins & Mandates | Agile Operator',
+  title: 'Margins & Mandates',
   description:
     'Conversations with CEOs and operators about the plays, pivots, and pressure-tested leadership that define their companies. Hosted by Jeff Lortz.',
   alternates: {

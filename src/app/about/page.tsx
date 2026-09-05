@@ -10,7 +10,7 @@ import { StylizedImage } from '@/components/ui/StylizedImage'
 import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'About | Agile Operator',
+  title: 'About',
   description:
     'Jeff Lortz brings over two decades of executive leadership in Enterprise SaaS, Private Equity, and Digital Transformation. He built Agile Operator to be the advisory team he wished he had.',
 }

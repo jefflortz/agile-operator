@@ -6,7 +6,7 @@ import { Border } from '@/components/ui/Border'
 import HubSpotForm from '@/components/ui/HubSpotForm'
 
 export const metadata: Metadata = {
-  title: 'Contact | Agile Operator',
+  title: 'Contact',
   description:
     'Book a no-obligation strategy session with Jeff Lortz. We respond within one business day.',
 }

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/studio/', '/api/'],
     },
-    sitemap: 'https://agile-operator.com/sitemap.xml',
+    sitemap: 'https://www.agile-operator.com/sitemap.xml',
   }
 }

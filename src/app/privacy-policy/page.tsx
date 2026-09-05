@@ -3,7 +3,7 @@ import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Agile Operator',
+  title: 'Privacy Policy',
   description: 'How Agile Operator collects, uses, and protects your information.',
   alternates: { canonical: 'https://www.agile-operator.com/privacy-policy' },
   robots: { index: false },

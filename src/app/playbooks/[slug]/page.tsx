@@ -346,9 +346,45 @@ export default async function PlaybookDetailPage({
     ? urlFor(content.author.photo).width(160).height(160).url()
     : null
 
+  const articleUrl = `https://www.agile-operator.com/playbooks/${slug}`
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: content.title,
+    url: articleUrl,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
+    ...(content.excerpt && { description: content.excerpt }),
+    ...(content.publishedAt && {
+      datePublished: content.publishedAt,
+      dateModified: content.publishedAt,
+    }),
+    ...(featuredImageUrl && { image: [featuredImageUrl] }),
+    ...(readTime && { timeRequired: `PT${readTime}M` }),
+    author: {
+      '@type': 'Person',
+      name: content.author?.name ?? 'Jeff Lortz',
+      ...(content.author?.title && { jobTitle: content.author.title }),
+      url: 'https://www.agile-operator.com/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Agile Operator',
+      url: 'https://www.agile-operator.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.agile-operator.com/SVG/Agile Operator-03.svg',
+      },
+    },
+  }
+
   return (
     <>
       <ScrollProgress />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
 
       {/* ── Hero ── */}
       {/* -mt-[92px] cancels the nav wrapper's pt-14 + pt-9 so the image starts at the very top */}
