@@ -125,7 +125,7 @@ const nextConfig: NextConfig = {
     // ── Legacy WordPress sections and archives ───────────────────
     const legacyRedirects = [
       // Old service / offer pages
-      { source: '/gtm-advisory', destination: '/services/growth-advisory', permanent: true },
+      { source: '/gtm-advisory', destination: '/gtm', permanent: true },
       { source: '/saas-operating-services', destination: '/services', permanent: true },
       { source: '/executive-mastermind-groups', destination: '/collective-edge', permanent: true },
       { source: '/masterminds', destination: '/collective-edge', permanent: true },
@@ -134,7 +134,7 @@ const nextConfig: NextConfig = {
       // Contact / subscribe funnels
       { source: '/contact-us', destination: '/contact', permanent: true },
       { source: '/subscribe', destination: '/contact', permanent: true },
-      { source: '/diagnostic', destination: '/contact', permanent: true },
+      { source: '/diagnostic', destination: '/gtm#diagnostic', permanent: true },
       // Old blog indexes
       { source: '/insights', destination: '/playbooks', permanent: true },
       { source: '/blogs', destination: '/playbooks', permanent: true },
@@ -161,8 +161,8 @@ const nextConfig: NextConfig = {
       { source: '/a-founders-journey-healthcare-loss-and-building-something-that-actually-matters', destination: '/playbooks', permanent: true },
       { source: '/specialization-trust-and-the-discipline-of-scale', destination: '/playbooks', permanent: true },
       { source: '/specialization-trust-and-the-discipline-of-scale-2', destination: '/playbooks', permanent: true },
-      { source: '/steve-kielen', destination: '/playbooks', permanent: true },
-      { source: '/steven-keilen', destination: '/playbooks', permanent: true },
+      { source: '/steve-kielen', destination: '/gtm', permanent: true },
+      { source: '/steven-keilen', destination: '/gtm', permanent: true },
       // Date archives
       { source: '/:year(\\d{4})/:month(\\d{2})', destination: '/playbooks', permanent: true },
       { source: '/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})', destination: '/playbooks', permanent: true },
