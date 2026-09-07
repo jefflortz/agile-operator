@@ -84,8 +84,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Nav + Collective Edge */}
-          <div>
+          {/* Col 2: Nav */}
+          <div className="flex flex-col items-center text-center">
             <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-4">
               Navigation
             </p>
@@ -104,7 +104,7 @@ export default function Footer() {
           </div>
 
           {/* Col 3: Address + Social */}
-          <div>
+          <div className="lg:justify-self-end">
             <p className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-500 mb-4">
               Get in Touch
             </p>

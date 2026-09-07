@@ -182,10 +182,8 @@ export default async function Home() {
         </SectionIntro>
         <Container className="mt-16">
           <FadeInStagger>
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               {services.map((service, index) => {
-                // Prefer the Sanity-linked slug, fall back to known title→slug map
-                // so links work even before the seed script has run.
                 const PILLAR_SLUGS: Record<string, string> = {
                   'Growth Advisory': 'growth-advisory',
                   'Executive Coaching': 'executive-coaching',
@@ -197,28 +195,67 @@ export default async function Home() {
                   : PILLAR_SLUGS[service.title]
                   ? `/services/${PILLAR_SLUGS[service.title]}`
                   : '/services'
+                const serviceIcons = [
+                  // Growth Advisory — trending up
+                  <svg key="growth" viewBox="0 0 24 24" fill="none" className="h-7 w-7" aria-hidden="true">
+                    <path d="M2 17L8.5 10L13 14.5L21 6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 6h5v5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>,
+                  // Executive Coaching — person + bullseye
+                  <svg key="coaching" viewBox="0 0 24 24" fill="none" className="h-7 w-7" aria-hidden="true">
+                    <circle cx="12" cy="8" r="3" stroke="currentColor" strokeWidth="1.75"/>
+                    <path d="M5 20c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"/>
+                    <circle cx="19" cy="6" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
+                    <circle cx="19" cy="6" r="1" fill="currentColor"/>
+                  </svg>,
+                  // Interim / Fractional — briefcase
+                  <svg key="interim" viewBox="0 0 24 24" fill="none" className="h-7 w-7" aria-hidden="true">
+                    <rect x="2" y="8" width="20" height="13" rx="2" stroke="currentColor" strokeWidth="1.75"/>
+                    <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"/>
+                    <path d="M2 13h20" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"/>
+                  </svg>,
+                ]
                 return (
                   <FadeIn key={service._id}>
-                    <Border className="pt-8 flex flex-col h-full">
-                      <p className="font-display text-6xl font-medium text-navy-900 opacity-[0.06] leading-none mb-3 select-none" aria-hidden="true">
+                    <a
+                      href={href}
+                      className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-navy-950 p-8 pt-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-15px_rgba(7,20,40,0.6)] hover:ring-1 hover:ring-gold-500/30"
+                    >
+                      {/* Gold top accent bar */}
+                      <div className="h-1 w-full bg-gold-500 rounded-t-2xl mb-8 -mx-0" />
+
+                      {/* Large background number */}
+                      <p
+                        className="absolute bottom-6 right-6 font-display text-[8rem] font-bold leading-none text-white/[0.04] select-none pointer-events-none transition-all duration-300 group-hover:text-white/[0.07]"
+                        aria-hidden="true"
+                      >
                         {String(index + 1).padStart(2, '0')}
                       </p>
-                      <h3 className="font-display text-2xl font-semibold text-navy-900">
-                        {service.title}
-                      </h3>
-                      <p className="mt-4 text-base text-gray-600 leading-relaxed flex-1">
-                        {service.headline}
-                      </p>
-                      <a
-                        href={href}
-                        className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 hover:text-gold-500 transition-colors"
-                      >
-                        Learn More
-                        <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                          <path d="M6 12l4-4-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </a>
-                    </Border>
+
+                      {/* Content */}
+                      <div className="relative flex flex-col flex-1">
+                        <div className="mb-5 text-gold-500 transition-colors duration-200 group-hover:text-gold-400">
+                          {serviceIcons[index]}
+                        </div>
+                        <h3 className="font-display text-2xl font-semibold text-white leading-snug">
+                          {service.title}
+                        </h3>
+                        <p className="mt-4 text-base text-navy-300 leading-relaxed flex-1">
+                          {service.headline}
+                        </p>
+                        <div className="mt-8 flex items-center gap-2 text-sm font-semibold text-gold-400 transition-colors duration-200 group-hover:text-gold-300">
+                          Learn More
+                          <svg
+                            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            aria-hidden="true"
+                          >
+                            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                      </div>
+                    </a>
                   </FadeIn>
                 )
               })}

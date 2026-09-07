@@ -24,7 +24,7 @@ const navLinks = [
 function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path d="M2 6h20v2H2zM2 16h20v2H2z" />
+      <path d="M2 5h20v2H2zM2 11h20v2H2zM2 17h20v2H2z" />
     </svg>
   )
 }
@@ -55,22 +55,16 @@ function Header({
 }) {
   return (
     <Container>
-      <div className="flex items-center justify-between">
-        <Link href="/" aria-label="Home">
-          <Logo className="h-20" invert={invert} />
-        </Link>
-        <div className="flex items-center gap-x-8">
-          <Link
-            href="/contact"
-            className={clsx(
-              'hidden md:inline-flex font-sans text-sm font-medium px-4 py-2 rounded transition-colors duration-200',
-              invert
-                ? 'bg-white text-navy-900 hover:bg-navy-50'
-                : 'bg-navy-900 text-white hover:bg-navy-700'
-            )}
-          >
-            Book a Strategy Session
+      <div className="grid grid-cols-3 items-center">
+        {/* Left: Logo */}
+        <div>
+          <Link href="/" aria-label="Home">
+            <Logo className="h-20" invert={invert} />
           </Link>
+        </div>
+
+        {/* Center: Hamburger */}
+        <div className="flex justify-center">
           <button
             ref={toggleRef}
             type="button"
@@ -90,6 +84,21 @@ function Header({
                 : 'fill-navy-900 group-hover:fill-navy-700',
             )} />
           </button>
+        </div>
+
+        {/* Right: CTA */}
+        <div className="flex justify-end">
+          <Link
+            href="/contact"
+            className={clsx(
+              'hidden md:inline-flex font-sans text-sm font-medium px-4 py-2 rounded transition-colors duration-200',
+              invert
+                ? 'bg-white text-navy-900 hover:bg-navy-50'
+                : 'bg-navy-900 text-white hover:bg-navy-700'
+            )}
+          >
+            Book a Strategy Session
+          </Link>
         </div>
       </div>
     </Container>

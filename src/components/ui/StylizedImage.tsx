@@ -1,9 +1,8 @@
 import { useId } from 'react'
-import Image, { type ImageProps } from 'next/image'
+import type { ImageProps } from 'next/image'
 import clsx from 'clsx'
 
 // Three SVG clip-path shapes from the Studio template.
-// shape=0 → Growth Advisory, shape=1 → Executive Coaching, shape=2 → Interim/Fractional
 const shapes = [
   {
     width: 655,
@@ -32,26 +31,49 @@ export function StylizedImage({
   const id = useId()
   const { width, height, path } = shapes[shape]
 
+  // Resolve the src to a plain URL string so it can be used in SVG <image>.
+  // Next.js static imports resolve to a StaticImageData object with a `.src`
+  // property; plain string URLs are used as-is.
+  const href =
+    typeof props.src === 'string'
+      ? props.src
+      : (props.src as { src: string }).src
+
   return (
-    <div className={clsx('relative flex w-full grayscale', className)}>
-      <svg viewBox={`0 0 ${width} ${height}`} fill="none" className="h-full">
+    <div
+      className={clsx('relative w-full grayscale', className)}
+      style={{ aspectRatio: `${width} / ${height}` }}
+    >
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        fill="none"
+        className="h-full w-full"
+        aria-hidden={!props.alt}
+      >
         <g clipPath={`url(#${id}-clip)`} className="group">
+          {/* Image — scales slightly on hover */}
           <g className="origin-center scale-100 transition duration-500 motion-safe:group-hover:scale-105">
-            <foreignObject width={width} height={height}>
-              <Image
-                alt=""
-                className="w-full bg-navy-100 object-cover"
-                style={{ aspectRatio: `${width} / ${height}` }}
-                {...props}
-              />
-            </foreignObject>
+            {/* SVG <image> avoids the foreignObject/Next.js-Image incompatibility
+                while still letting the clip path mask the bitmap correctly.
+                preserveAspectRatio="xMidYMid slice" is the SVG equivalent of
+                object-fit: cover.                                             */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <image
+              href={href}
+              width={width}
+              height={height}
+              preserveAspectRatio="xMidYMid slice"
+            />
           </g>
+
+          {/* Subtle stroke that traces the clip shape */}
           <use
             href={`#${id}-shape`}
             strokeWidth="2"
             className="stroke-navy-900/10"
           />
         </g>
+
         <defs>
           <clipPath id={`${id}-clip`}>
             <path
