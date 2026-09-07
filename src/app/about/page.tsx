@@ -116,6 +116,19 @@ export default function AboutPage() {
                   someone who has been in the seat, navigated the politics, and survived the
                   moments that don&apos;t make it into the case study.
                 </p>
+                <p>
+                  That work now runs on two tracks. Agile Operator serves growth-stage and
+                  investor-backed companies wherever they are.{' '}
+                  <a
+                    href="https://tidalpointpartners.com"
+                    className="font-medium text-navy-900 underline decoration-gold-500 underline-offset-4 transition-colors hover:text-navy-700"
+                  >
+                    Tidal Point Partners
+                  </a>
+                  , its regional practice, works alongside privately-held owners across
+                  Southeastern New England &mdash; the same operator&apos;s perspective, closer
+                  to home.
+                </p>
                 <p className="font-display text-xl font-medium text-navy-800 italic border-l-2 border-gold-500 pl-5">
                   &ldquo;We&apos;re not consultants — we&apos;re operators with the scars, the playbooks,
                   and the clarity to help your teams level up fast.&rdquo;
