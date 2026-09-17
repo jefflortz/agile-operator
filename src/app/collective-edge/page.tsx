@@ -91,7 +91,7 @@ export default function CollectiveEdgePage() {
               </span>
             </div>
             <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-white sm:text-7xl">
-              A Peer-Advisory Council for Boston Technology CEOs
+              A Confidential CEO Peer Group for Boston Technology Leaders
             </h1>
             <p className="mt-6 text-xl text-navy-200 max-w-2xl">
               Eight seats. Collective Edge convenes a small, confidential council of
@@ -139,11 +139,11 @@ export default function CollectiveEdgePage() {
               The Council
             </p>
             <h2 className="font-display text-4xl font-medium tracking-tight text-balance text-navy-900 sm:text-5xl">
-              Collective Edge — CEO Council
+              Collective Edge — A CEO Peer Advisory Group
             </h2>
             <div className="mt-6 space-y-4 text-xl text-gray-600 leading-relaxed">
               <p>
-                Collective Edge convenes a small group of technology CEOs in Boston who lead
+                Collective Edge is a CEO peer advisory group for technology CEOs in Boston who lead
                 growth-stage B2B SaaS and vertical-software companies. Members meet on a
                 regular cadence to work through the strategic decisions that define their
                 companies — organizational design, capital allocation, market positioning,
@@ -225,6 +225,12 @@ export default function CollectiveEdgePage() {
                 together a small number of technology CEOs who meet on a regular cadence to work
                 through the real challenges of leading their companies.
               </p>
+              <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                If you&apos;ve been part of a CEO mastermind group or a large peer network, the
+                difference here is size and focus. Eight members, all technology CEOs at comparable
+                stage, meeting in person every month. No speakers, no curriculum — just the
+                decisions members are actually carrying, worked through by people who have made them.
+              </p>
               <ul className="mt-8 space-y-4 text-navy-700">
                 {structure.map((item) => (
                   <ListItem key={item}>{item}</ListItem>
@@ -294,7 +300,7 @@ export default function CollectiveEdgePage() {
               Who should join.
             </h2>
             <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-              The council is designed for technology CEOs who recognize that sustained
+              This peer group is designed for technology CEOs who recognize that sustained
               effectiveness requires honest counsel from peers who understand the role.
             </p>
             <ul className="mt-8 space-y-4 text-navy-700">
