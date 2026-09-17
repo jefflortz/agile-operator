@@ -131,6 +131,10 @@ const nextConfig: NextConfig = {
       { source: '/masterminds', destination: '/collective-edge', permanent: true },
       { source: '/collective-edge-ceo', destination: '/collective-edge', permanent: true },
       { source: '/about-agile-saas-expertise', destination: '/about', permanent: true },
+      // Old WordPress podcast section and CV download (still 404 in Search Console, Sep 2026)
+      { source: '/podcasts', destination: '/margins-and-mandates', permanent: true },
+      { source: '/podcasts/:path*', destination: '/margins-and-mandates', permanent: true },
+      { source: '/wp-content/uploads/2024/03/Jeff-Lortz-CV-2024.pdf', destination: '/about', permanent: true },
       // Contact / subscribe funnels
       { source: '/contact-us', destination: '/contact', permanent: true },
       { source: '/subscribe', destination: '/contact', permanent: true },
