@@ -7,9 +7,9 @@ import { Border } from '@/components/ui/Border'
 import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'Collective Edge — CEO Council',
+  title: 'Collective Edge: CEO Peer Group & Mastermind',
   description:
-    'A peer-advisory council for Boston technology CEOs. Eight seats. Founding cohort forming for Summer 2026.',
+    'A confidential CEO peer advisory group and executive mastermind for Boston-area technology CEOs. Eight seats per cohort. Fall 2026 cohort forming.',
 }
 
 const memberBenefits = [
@@ -47,7 +47,7 @@ const decisions = [
 ]
 
 const structure = [
-  '8 technology CEOs per cohort (founding cohort: forming for Summer 2026)',
+  '8 technology CEOs per cohort (founding cohort: forming for Fall 2026)',
   'Confidential by structure — Chatham House rule, no recordings',
   'Monthly in-person roundtable in Boston',
   'Quarterly individual business review meetings with the moderator',
@@ -87,7 +87,7 @@ export default function CollectiveEdgePage() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-4 py-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
               <span className="font-sans text-xs font-semibold uppercase tracking-widest text-gold-400">
-                Founding Cohort — Summer 2026
+                Founding Cohort — Fall 2026
               </span>
             </div>
             <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-white sm:text-7xl">

@@ -14,9 +14,9 @@ import imageLaptop from '@/images/laptop.jpg'
 import type { StaticImageData } from 'next/image'
 
 export const metadata: Metadata = {
-  title: 'Services',
+  title: 'Growth Advisory & Fractional Executives',
   description:
-    'Three ways Agile Operator works with growth-stage companies — growth advisory, executive coaching, and interim or fractional executive leadership.',
+    'Operator-led help for technology CEOs: growth advisory, executive coaching, and interim or fractional executive leadership from a former PE-backed SaaS CEO.',
 }
 
 // ── Default images + shapes per slot ─────────────────────────────────────────
