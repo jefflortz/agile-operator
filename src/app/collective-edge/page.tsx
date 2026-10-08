@@ -251,7 +251,7 @@ export default function CollectiveEdgePage() {
                 <div className="flex items-start gap-6">
                   <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-xl">
                     <Image
-                      src="/Headshots/0L9A6094 (1).png"
+                      src="/Headshots/jeff-lortz-headshot.jpg"
                       alt="Jeff Lortz"
                       fill
                       className="object-cover grayscale"

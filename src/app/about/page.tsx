@@ -84,7 +84,7 @@ export default function AboutPage() {
             <FadeIn>
               <div className="relative max-w-sm mx-auto lg:mx-0 lg:max-w-none">
                 <StylizedImage
-                  src="/Headshots/0L9A6094 (1).png"
+                  src="/Headshots/jeff-lortz-headshot.jpg"
                   alt="Jeff Lortz"
                   width={480}
                   height={560}
